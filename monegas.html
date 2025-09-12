@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monegas | Taller de Mecánica</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: #222;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+        nav {
+            background: #444;
+            padding: 10px 0;
+            text-align: center;
+        }
+        nav a {
+            color: #fff;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            background: #222;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .resultados {
+            margin-top: 30px;
+            text-align: left;
+        }
+    </style>
+    <script>
+        function buscar() {
+            var query = document.getElementById('buscador').value.toLowerCase();
+            var resultados = document.getElementById('resultados');
+            resultados.innerHTML = '';
+            if(query === '') return;
+            // Ejemplo de datos para buscar
+            var datos = [
+                'Regulación de gas 3ra generación',
+                'Regulación de gas 5ta generación',
+                'Cambio de mangueras',
+                'Revisión de inyectores',
+                'Cambio de filtro de gas',
+                'Diagnóstico de fugas',
+                'Instalación de equipos de gas',
+                'Conversión a GNV',
+                'Conversión a GLP',
+                'Mantenimiento preventivo de gas'
+            ];
+            var encontrados = datos.filter(function(item) {
+                return item.toLowerCase().includes(query);
+            });
+            if(encontrados.length === 0) {
+                resultados.innerHTML = '<p>No se encontraron resultados.</p>';
+            } else {
+                var ul = document.createElement('ul');
+                encontrados.forEach(function(item) {
+                    var li = document.createElement('li');
+                    li.textContent = item;
+                    ul.appendChild(li);
+                });
+                resultados.appendChild(ul);
+            }
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Monegas</h1>
+        <p>Busca servicios y soluciones relacionadas con gas automotriz</p>
+    </header>
+    <nav>
+        <a href="index.html">Inicio</a>
+        <a href="servicios.html">Servicios</a>
+        <a href="monegas.html">Monegas</a>
+        <a href="index.html#contacto">Contacto</a>
+    </nav>
+    <div class="container">
+        <h2>Buscador de servicios de gas</h2>
+        <input type="text" id="buscador" placeholder="¿Qué servicio buscas?" oninput="buscar()">
+        <div class="resultados" id="resultados"></div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taller de Mecánica</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: #222;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+        nav {
+            background: #444;
+            padding: 10px 0;
+            text-align: center;
+        }
+        nav a {
+            color: #fff;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #222;
+        }
+        .servicios {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .servicio {
+            flex: 1 1 250px;
+            background: #e9e9e9;
+            padding: 20px;
+            border-radius: 6px;
+            text-align: center;
+        }
+        footer {
+            background: #222;
+            color: #fff;
+            text-align: center;
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+        @media (max-width: 700px) {
+            .servicios {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>AUTOMOTRIZ SN,GAS"</h1>
+        <p>¡Confía en los expertos para el cuidado de tu vehículo!</p>
+    </header>
+    <!-- Galería eliminada por solicitud del usuario -->
+    <nav>
+        <a href="servicios.html">Servicios</a>
+        <a href="#nosotros">Sobre Nosotros</a>
+        <a href="#contacto">Contacto</a>
+    </nav>
+    <div class="container">
+        <section id="servicios">
+            <h2>Servicios</h2>
+            <div class="servicios">
+                <div class="servicio">
+                    <h3>Mantenimiento General</h3>
+                    <p>Cambio de aceite, filtros, revisión de frenos y más.</p>
+                </div>
+                <div class="servicio">
+                    <h3>Diagnóstico Computarizado</h3>
+                    <p>Identificamos fallas electrónicas con equipos modernos.</p>
+                </div>
+                <div class="servicio">
+                    <h3>Reparación de Motor</h3>
+                    <p>Soluciones para motores a gasolina y diésel.</p>
+                </div>
+                <div class="servicio">
+                    <h3>Suspensión y Frenos</h3>
+                    <p>Reparación y mantenimiento de sistemas de suspensión y frenos.</p>
+                </div>
+            </div>
+        </section>
+        <section id="nosotros" style="margin-top:40px;">
+            <h2>Sobre Nosotros</h2>
+            <p>Somos un taller con más de 15 años de experiencia, comprometidos con la calidad y la satisfacción de nuestros clientes. Nuestro equipo está formado por profesionales certificados y apasionados por la mecánica automotriz.</p>
+        </section>
+        <section id="contacto" style="margin-top:40px;">
+            <h2>Contacto</h2>
+            <p>Dirección: Calle Principal #123, Ciudad</p>
+            <p>Teléfono: (123) 456-7890</p>
+            <p>Email: contacto@tusolucionautomotriz.com</p>
+            <form>
+                <input type="text" placeholder="Tu nombre" required style="width:48%;margin-bottom:10px;">
+                <input type="email" placeholder="Tu email" required style="width:48%;margin-bottom:10px;float:right;">
+                <textarea placeholder="Tu mensaje" required style="width:100%;height:80px;margin-bottom:10px;"></textarea>
+                <button type="submit" style="width:100%;background:#222;color:#fff;padding:10px;border:none;border-radius:4px;font-size:16px;">Enviar</button>
+            </form>
+        </section>
+    </div>
+    <footer>
+        &copy; 2025 Taller de Mecánica "Tu Solución Automotriz". Todos los derechos reservados.
+    </footer>
+</body>
+</html>
+
+        /* Galería eliminada por solicitud del usuario */
+    </footer>

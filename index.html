@@ -16,6 +16,7 @@
             color: #fff;
             padding: 20px 0;
             text-align: center;
+            position: relative;
         }
         nav {
             background: #444;
@@ -35,6 +36,13 @@
             padding: 30px;
             border-radius: 8px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .gasfi-img {
+            width: 150px;
+            height: auto;
+            max-width: 80vw;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
         h2 {
             color: #222;
@@ -64,22 +72,44 @@
             .servicios {
                 flex-direction: column;
             }
+            .container {
+                padding: 10px;
+                margin: 10px;
+            }
+            nav a {
+                display: block;
+                margin: 10px 0;
+                font-size: 18px;
+            }
+            header h1 {
+                font-size: 22px;
+            }
+            .gasfi-img {
+                width: 90px;
+            }
         }
     </style>
 </head>
 <body>
     <header>
         <h1>AUTOMOTRIZ SN,GAS"</h1>
+        <div id="fecha-hora" style="position:absolute;top:20px;right:30px;font-size:16px;color:#fff;font-weight:bold;text-shadow:1px 1px 4px #000;"></div>
         <p>¡Confía en los expertos para el cuidado de tu vehículo!</p>
     </header>
+    <div style="text-align:center; margin: 20px 0;">
+        <a href="file:///C:/Users/Usuario/Desktop/PAGINA%20WEB/gasfi.png.jpeg" target="_blank">
+            <img src="file:///C:/Users/Usuario/Desktop/PAGINA%20WEB/gasfi.png.jpeg" alt="Mascota Gasfi" class="gasfi-img">
+        </a>
+        <p><strong>¡Conoce a Gasfi, la mascota de nuestra empresa!</strong></p>
+    </div>
     <!-- Galería eliminada por solicitud del usuario -->
     <nav>
-
         <a href="servicios.html">Servicios</a>
         <a href="#nosotros">Sobre Nosotros</a>
         <a href="monegas.html">Monegas</a>
         <a href="datos-utiles.html">Datos Útiles</a>
         <a href="#contacto">Contacto</a>
+        <a href="tienda.html">Tienda</a>
     </nav>
     <div class="container">
         <section id="ofertas">
@@ -129,6 +159,15 @@
     </a>
     <script>
     // Código del modal eliminado
+    function actualizarFechaHora() {
+        const ahora = new Date();
+        const opciones = { year: 'numeric', month: '2-digit', day: '2-digit' };
+        const fecha = ahora.toLocaleDateString('es-PE', opciones);
+        const hora = ahora.toLocaleTimeString('es-PE', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+        document.getElementById('fecha-hora').textContent = fecha + ' ' + hora;
+    }
+    setInterval(actualizarFechaHora, 1000);
+    actualizarFechaHora();
     </script>
 </body>
 </html>

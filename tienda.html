@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda - Taller de Mecánica</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f4f4f4; margin: 0; padding: 0; }
+        header { background: #222; color: #fff; padding: 20px 0; text-align: center; }
+        .container { max-width: 900px; margin: 30px auto; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        h2 { color: #222; }
+        .productos { display: flex; flex-wrap: wrap; gap: 20px; }
+        .producto { flex: 1 1 250px; background: #e9e9e9; padding: 20px; border-radius: 6px; text-align: center; }
+        .producto img { width: 100px; height: 100px; object-fit: contain; margin-bottom: 10px; }
+        .btn-comprar { background: #222; color: #fff; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; }
+        .btn-comprar:hover { background: #444; }
+        a.volver { display: inline-block; margin-top: 20px; color: #222; text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Tienda</h1>
+        <p>Compra productos y accesorios para tu vehículo</p>
+    </header>
+    <div class="container">
+        <h2>Productos Destacados</h2>
+        <div class="productos">
+            <div class="producto">
+                <img src="https://cdn-icons-png.flaticon.com/512/1048/1048314.png" alt="Aceite de Motor">
+                <h3>Aceite de Motor</h3>
+                <p>Lubricante sintético 4L</p>
+                <p><strong>S/ 80.00</strong></p>
+                <button class="btn-comprar">Comprar</button>
+            </div>
+            <div class="producto">
+                <img src="https://cdn-icons-png.flaticon.com/512/1048/1048320.png" alt="Filtro de Aire">
+                <h3>Filtro de Aire</h3>
+                <p>Filtro universal para autos</p>
+                <p><strong>S/ 35.00</strong></p>
+                <button class="btn-comprar">Comprar</button>
+            </div>
+            <div class="producto">
+                <img src="https://cdn-icons-png.flaticon.com/512/1048/1048322.png" alt="Batería 12V">
+                <h3>Batería 12V</h3>
+                <p>Batería para auto estándar</p>
+                <p><strong>S/ 250.00</strong></p>
+                <button class="btn-comprar">Comprar</button>
+            </div>
+        </div>
+        <a href="index.html" class="volver">&larr; Volver al inicio</a>
+    </div>
+</body>
+</html>

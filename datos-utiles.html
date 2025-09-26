@@ -85,7 +85,8 @@
     </nav>
     <div class="container">
         <h2>Opciones de Datos Útiles</h2>
-        <div class="opciones-utiles">
+        <input type="text" id="busqueda-datos" placeholder="Buscar en datos útiles..." style="width:100%;padding:10px;font-size:16px;margin-bottom:20px;border-radius:5px;border:1px solid #ccc;">
+        <div class="opciones-utiles" id="opciones-utiles">
             <a class="opcion" href="gasolina.html">Gasolina</a>
             <a class="opcion" href="glp.html">GLP</a>
             <a class="opcion" href="gnv.html">GNV</a>
@@ -93,13 +94,26 @@
             <a class="opcion" href="direccion.html">Dirección</a>
             <a class="opcion" href="frenos.html">Frenos</a>
             <a class="opcion" href="combustible.html">Combustible</a>
-            <a class="opcion" href="airbag.html">AIRBAG</a>
-            <a class="opcion" href="bujias.html">BUJIAS</a>
+            <a class="opcion" href="airbag.html">Airbag</a>
+            <a class="opcion" href="bujias.html">Bujias</a>
             <a class="opcion" href="sensores.html">Sensores</a>
+            <a class="opcion" href="lubricantes.html">Lubricantes</a>
+            <a class="opcion" href="refrigerante.html">Refrigerantes</a>
         </div>
     </div>
     <footer>
         &copy; 2025 Taller de Mecánica "Tu Solución Automotriz". Todos los derechos reservados.
     </footer>
+    <script>
+    // Barra de búsqueda para filtrar las opciones
+    document.getElementById('busqueda-datos').addEventListener('input', function() {
+        const filtro = this.value.toLowerCase();
+        const opciones = document.querySelectorAll('.opcion');
+        opciones.forEach(function(opcion) {
+            const texto = opcion.textContent.toLowerCase();
+            opcion.style.display = texto.includes(filtro) ? '' : 'none';
+        });
+    });
+    </script>
 </body>
 </html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experiencias de Clientes - SN'GAS</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f4f4f4; margin: 0; padding: 0; }
+        header { background: #222; color: #fff; padding: 20px 0; text-align: center; }
+        .container { max-width: 900px; margin: 30px auto; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        h1, h2 { color: #009688; }
+        .post {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+            padding: 14px 12px;
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+            margin-bottom: 18px;
+        }
+        .post img {
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1.5px solid #25d366;
+        }
+        .post .info { flex: 1; }
+        .post .nombre { font-weight: bold; color: #009688; }
+        .post .texto { margin: 7px 0 0 0; }
+        .post .fecha { font-size: 0.9em; color: #aaa; margin-top: 6px; }
+        @media (max-width: 700px) {
+            .container { padding: 10px; margin: 10px; }
+            .post { flex-direction: column; align-items: flex-start; }
+            .post img { width: 100%; height: auto; max-width: 220px; }
+        }
+        a.volver { display:inline-block; margin-bottom:18px; color:#009688; text-decoration:none; font-weight:bold; }
+        form { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+        form input, form button {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1em;
+        }
+        form button {
+            background: #25d366;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        form button:hover {
+            background: #219558;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Experiencias de Clientes</h1>
+        <a href="index.html" class="volver">&larr; Volver a la página principal</a>
+    </header>
+    <div class="container">
+        <h2>Publicaciones recientes</h2>
+        <form id="form-experiencia" style="background:#f8f8f8;padding:18px 12px;border-radius:8px;box-shadow:0 1px 4px rgba(0,0,0,0.06);margin-bottom:24px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
+            <input type="text" id="nombre-cliente" placeholder="Tu nombre" required style="flex:1 1 120px;padding:7px 8px;border-radius:6px;border:1px solid #ccc;">
+            <input type="file" id="foto-cliente" accept="image/*" style="flex:1 1 180px;">
+            <input type="text" id="texto-experiencia" placeholder="Escribe tu experiencia..." required style="flex:2 1 220px;padding:7px 8px;border-radius:6px;border:1px solid #ccc;">
+            <button type="submit" style="background:#25d366;color:#fff;padding:8px 18px;border:none;border-radius:6px;font-size:1em;">Publicar</button>
+        </form>
+        <div id="muro-experiencias"></div>
+    </div>
+    <script>
+    let esAdmin = false;
+    function pedirClaveAdmin() {
+        const clave = prompt('Introduce la clave de administrador para activar el modo borrar:', '');
+        if(clave === 'Joste143007') { // Clave actualizada
+            esAdmin = true;
+            renderMuroExperiencias();
+            alert('Modo administrador activado. Ahora puedes borrar comentarios.');
+        } else {
+            alert('Clave incorrecta. No tienes permisos de administrador.');
+        }
+    }
+    function renderMuroExperiencias() {
+        var muro = document.getElementById('muro-experiencias');
+        var posts = JSON.parse(localStorage.getItem('experienciasMecanica')||'[]');
+        muro.innerHTML = '';
+        if(posts.length===0) {
+            muro.innerHTML = '<div style="color:#888;text-align:center;">Aún no hay experiencias publicadas.</div>';
+        } else {
+            posts.reverse().forEach(function(post,idx){
+                if(post.nombre && post.nombre.trim().toLowerCase() === 'vladimir') return;
+                let likes = post.likes || 0;
+                let dislikes = post.dislikes || 0;
+                let respuestas = post.respuestas || [];
+                muro.innerHTML += `<div class="post">
+                    ${post.foto?`<img src="${post.foto}" alt="Foto cliente">`:''}
+                    <div class="info">
+                        <div class="nombre">${post.nombre||'Anónimo'}</div>
+                        <div class="texto">${post.texto}</div>
+                        <div class="fecha">${post.fecha}</div>
+                        <div style="margin-top:8px;display:flex;gap:10px;align-items:center;">
+                            <button onclick="meGusta(${posts.length-1-idx})" style="background:#e0f7fa;border:none;border-radius:4px;padding:3px 10px;cursor:pointer;">👍 <span id='like-${posts.length-1-idx}'>${likes}</span></button>
+                            <button onclick="noMeGusta(${posts.length-1-idx})" style="background:#ffeaea;border:none;border-radius:4px;padding:3px 10px;cursor:pointer;">👎 <span id='dislike-${posts.length-1-idx}'>${dislikes}</span></button>
+                            <button onclick="mostrarResponder(${posts.length-1-idx})" style="background:#f0f0f0;border:none;border-radius:4px;padding:3px 10px;cursor:pointer;">Responder</button>
+                            ${esAdmin?`<button onclick="borrarComentario(${posts.length-1-idx})" style="background:#ffb3b3;border:none;border-radius:4px;padding:3px 10px;cursor:pointer;">🗑️ Borrar</button>`:''}
+                        </div>
+                        <div id="responder-${posts.length-1-idx}" style="display:none;margin-top:8px;">
+                            <input type="text" id="input-respuesta-${posts.length-1-idx}" placeholder="Escribe una respuesta..." style="padding:5px 8px;border-radius:5px;border:1px solid #ccc;width:70%;">
+                            <button onclick="publicarRespuesta(${posts.length-1-idx})" style="background:#25d366;color:#fff;padding:5px 12px;border:none;border-radius:5px;">Publicar</button>
+                        </div>
+                        <div id="respuestas-${posts.length-1-idx}" style="margin-top:10px;">
+                            ${respuestas.map(r=>`<div style="background:#f8f8f8;border-radius:6px;padding:6px 10px;margin-bottom:4px;"><b>${r.nombre||'Anónimo'}:</b> ${r.texto}</div>`).join('')}
+                        </div>
+                    </div>
+                </div>`;
+            });
+        }
+    }
+    function meGusta(idx) {
+        let posts = JSON.parse(localStorage.getItem('experienciasMecanica')||'[]');
+        posts[idx].likes = (posts[idx].likes||0)+1;
+        localStorage.setItem('experienciasMecanica',JSON.stringify(posts));
+        document.getElementById('like-'+idx).textContent = posts[idx].likes;
+    }
+    function noMeGusta(idx) {
+        let posts = JSON.parse(localStorage.getItem('experienciasMecanica')||'[]');
+        posts[idx].dislikes = (posts[idx].dislikes||0)+1;
+        localStorage.setItem('experienciasMecanica',JSON.stringify(posts));
+        document.getElementById('dislike-'+idx).textContent = posts[idx].dislikes;
+    }
+    function mostrarResponder(idx) {
+        let el = document.getElementById('responder-'+idx);
+        if(el) el.style.display = (el.style.display==='none')?'block':'none';
+    }
+    function publicarRespuesta(idx) {
+        let input = document.getElementById('input-respuesta-'+idx);
+        let texto = input.value.trim();
+        if(!texto) return;
+        let nombre = prompt('¿Tu nombre? (opcional)','');
+        let posts = JSON.parse(localStorage.getItem('experienciasMecanica')||'[]');
+        if(!posts[idx].respuestas) posts[idx].respuestas = [];
+        posts[idx].respuestas.push({nombre:nombre,texto:texto});
+        localStorage.setItem('experienciasMecanica',JSON.stringify(posts));
+        renderMuroExperiencias();
+    }
+    function borrarComentario(idx) {
+        let posts = JSON.parse(localStorage.getItem('experienciasMecanica')||'[]');
+        if(confirm('¿Seguro que deseas borrar este comentario?')) {
+            posts.splice(idx,1);
+            localStorage.setItem('experienciasMecanica',JSON.stringify(posts));
+            renderMuroExperiencias();
+        }
+    }
+    document.getElementById('form-experiencia').onsubmit = function(e) {
+        e.preventDefault();
+        var nombre = document.getElementById('nombre-cliente').value.trim();
+        var texto = document.getElementById('texto-experiencia').value.trim();
+        var fotoInput = document.getElementById('foto-cliente');
+        var fecha = new Date().toLocaleString('es-PE', {year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'});
+        if(!texto) return;
+        var post = {nombre:nombre,texto:texto,fecha:fecha,foto:'',likes:0,dislikes:0,respuestas:[]};
+        var posts = JSON.parse(localStorage.getItem('experienciasMecanica')||'[]');
+        if(fotoInput.files && fotoInput.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                post.foto = e.target.result;
+                posts.push(post);
+                localStorage.setItem('experienciasMecanica',JSON.stringify(posts));
+                renderMuroExperiencias();
+            };
+            reader.readAsDataURL(fotoInput.files[0]);
+        } else {
+            posts.push(post);
+            localStorage.setItem('experienciasMecanica',JSON.stringify(posts));
+            renderMuroExperiencias();
+        }
+        this.reset();
+    };
+    document.addEventListener('DOMContentLoaded',function(){
+        renderMuroExperiencias();
+        // Botón para activar modo admin
+        if(!document.getElementById('btn-admin')) {
+            let btn = document.createElement('button');
+            btn.textContent = 'Modo administrador';
+            btn.id = 'btn-admin';
+            btn.style = 'margin:18px 0 0 0;background:#222;color:#fff;padding:7px 18px;border-radius:6px;border:none;cursor:pointer;float:right;';
+            btn.onclick = pedirClaveAdmin;
+            document.querySelector('.container').prepend(btn);
+        }
+    });
+    </script>
+</body>
+</html>

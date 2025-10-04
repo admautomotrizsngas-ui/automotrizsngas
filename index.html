@@ -37,6 +37,9 @@
             border-radius: 8px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
+        #ofertas {
+            text-align: center;
+        }
         .gasfi-img {
             width: 300px;
             height: auto;
@@ -68,6 +71,28 @@
             width: 100%;
             bottom: 0;
         }
+        .news-ticker {
+            width: 100%;
+            background: #009688;
+            color: #fff;
+            font-weight: bold;
+            font-size: 1.15em;
+            padding: 10px 0;
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 2000;
+        }
+        .news-ticker-content {
+            display: inline-block;
+            white-space: nowrap;
+            animation: ticker-move 30s linear infinite;
+        }
+        @keyframes ticker-move {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
         @media (max-width: 700px) {
             .servicios {
                 flex-direction: column;
@@ -92,9 +117,27 @@
             font-size: 48px;
             letter-spacing: 2px;
         }
+        #ofertas h2 {
+            font-size: 2.4em;
+            margin-bottom: 18px;
+        }
+        #ofertas .servicio h3 {
+            font-size: 1.35em;
+        }
+        #ofertas .servicio p {
+            font-size: 1.13em;
+        }
+        body {
+            padding-top: 48px;
+        }
     </style>
 </head>
 <body>
+    <div class="news-ticker">
+        <span class="news-ticker-content" id="news-ticker-content">
+            ¡Promoción especial este mes! | Nuevo horario de atención: Lunes a viernes 8:30am-6pm y sabados hasta 1pm | ¡Consulta por la conversión a gas vehicular! | Diagnóstico computarizado gratis en tu primera visita | Síguenos en redes sociales para más novedades
+        </span>
+    </div>
     <header>
         <h1>AUTOMOTRIZ SN'GAS</h1
         <div id="fecha-hora" style="position:absolute;top:20px;right:30px;font-size:16px;color:#fff;font-weight:bold;text-shadow:1px 1px 4px #000;"></div>
@@ -105,7 +148,6 @@
         <a href="datos-utiles.html">Datos Útiles</a>
         <a href="monegas.html">Monegas</a>
         <a href="tienda.html">Tienda</a>
-        <a href="experiencias.html">Cuéntanos tu experiencia</a>
     </nav>
     <section style="background: linear-gradient(90deg, #25d366 0%, #009688 100%); color: #fff; text-align: center; padding: 35px 10px 30px 10px; margin-bottom: 30px; border-radius: 0 0 16px 16px; box-shadow: 0 2px 12px rgba(0,0,0,0.08);">
         <h2 style="font-size:2.1em; margin-bottom:10px; letter-spacing:1px;">¡Especialistas en Conversión y Mantenimiento de Gas Vehicular!</h2>

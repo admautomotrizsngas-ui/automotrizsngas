@@ -69,126 +69,110 @@
         </form>
         <div id="muro-experiencias"></div>
     </div>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
     <script>
-    let esAdmin = false;
-    function pedirClaveAdmin() {
-        const clave = prompt('Introduce la clave de administrador para activar el modo borrar:', '');
-        if(clave === 'Joste143007') { // Clave actualizada
-            esAdmin = true;
-            renderMuroExperiencias();
-            alert('Modo administrador activado. Ahora puedes borrar comentarios.');
-        } else {
-            alert('Clave incorrecta. No tienes permisos de administrador.');
-        }
+    // PASO 2: Configura tu proyecto Firebase aquí
+    const firebaseConfig = {
+        apiKey: "TU_API_KEY",
+        authDomain: "TU_AUTH_DOMAIN",
+        databaseURL: "TU_DATABASE_URL",
+        projectId: "TU_PROJECT_ID",
+        storageBucket: "TU_STORAGE_BUCKET",
+        messagingSenderId: "TU_MESSAGING_SENDER_ID",
+        appId: "TU_APP_ID"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+
+    function fileToBase64(file, cb) {
+        const reader = new FileReader();
+        reader.onload = e => cb(e.target.result);
+        reader.readAsDataURL(file);
     }
-    function renderMuroExperiencias() {
-        var muro = document.getElementById('muro-experiencias');
-        var posts = JSON.parse(localStorage.getItem('experienciasMecanica')||'[]');
+
+    document.getElementById('form-experiencia').onsubmit = function(e) {
+        e.preventDefault();
+        const nombre = document.getElementById('nombre-cliente').value.trim();
+        const texto = document.getElementById('texto-experiencia').value.trim();
+        const fotoInput = document.getElementById('foto-cliente');
+        const fecha = new Date().toLocaleString('es-PE', {year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'});
+        if(!texto) return;
+        const post = {nombre,texto,fecha,foto:'',likes:0,dislikes:0,respuestas:[]};
+        if(fotoInput.files && fotoInput.files[0]) {
+            fileToBase64(fotoInput.files[0], function(base64){
+                post.foto = base64;
+                db.ref('experiencias').push(post);
+            });
+        } else {
+            db.ref('experiencias').push(post);
+        }
+        this.reset();
+    };
+
+    db.ref('experiencias').on('value', function(snapshot){
+        const muro = document.getElementById('muro-experiencias');
+        const posts = [];
+        snapshot.forEach(child => {
+            posts.push({...child.val(), _id: child.key});
+        });
         muro.innerHTML = '';
         if(posts.length===0) {
             muro.innerHTML = '<div style="color:#888;text-align:center;">Aún no hay experiencias publicadas.</div>';
         } else {
             posts.reverse().forEach(function(post,idx){
-                if(post.nombre && post.nombre.trim().toLowerCase() === 'vladimir') return;
                 let likes = post.likes || 0;
                 let dislikes = post.dislikes || 0;
                 let respuestas = post.respuestas || [];
-                muro.innerHTML += `<div class="post">
-                    ${post.foto?`<img src="${post.foto}" alt="Foto cliente">`:''}
-                    <div class="info">
-                        <div class="nombre">${post.nombre||'Anónimo'}</div>
-                        <div class="texto">${post.texto}</div>
-                        <div class="fecha">${post.fecha}</div>
-                        <div style="margin-top:8px;display:flex;gap:10px;align-items:center;">
-                            <button onclick="meGusta(${posts.length-1-idx})" style="background:#e0f7fa;border:none;border-radius:4px;padding:3px 10px;cursor:pointer;">👍 <span id='like-${posts.length-1-idx}'>${likes}</span></button>
-                            <button onclick="noMeGusta(${posts.length-1-idx})" style="background:#ffeaea;border:none;border-radius:4px;padding:3px 10px;cursor:pointer;">👎 <span id='dislike-${posts.length-1-idx}'>${dislikes}</span></button>
-                            <button onclick="mostrarResponder(${posts.length-1-idx})" style="background:#f0f0f0;border:none;border-radius:4px;padding:3px 10px;cursor:pointer;">Responder</button>
-                            ${esAdmin?`<button onclick="borrarComentario(${posts.length-1-idx})" style="background:#ffb3b3;border:none;border-radius:4px;padding:3px 10px;cursor:pointer;">🗑️ Borrar</button>`:''}
+                muro.innerHTML += `<div class=\"post\">
+                    ${post.foto?`<img src=\"${post.foto}\" alt=\"Foto cliente\">`:''}
+                    <div class=\"info\">
+                        <div class=\"nombre\">${post.nombre||'Anónimo'}</div>
+                        <div class=\"texto\">${post.texto}</div>
+                        <div class=\"fecha\">${post.fecha}</div>
+                        <div class=\"acciones\">
+                            <button class=\"like\" onclick=\"meGusta('${post._id}')\">👍 <span id='like-${post._id}'>${likes}</span></button>
+                            <button class=\"dislike\" onclick=\"noMeGusta('${post._id}')\">👎 <span id='dislike-${post._id}'>${dislikes}</span></button>
+                            <button class=\"responder\" onclick=\"mostrarResponder('${post._id}')\">Responder</button>
                         </div>
-                        <div id="responder-${posts.length-1-idx}" style="display:none;margin-top:8px;">
-                            <input type="text" id="input-respuesta-${posts.length-1-idx}" placeholder="Escribe una respuesta..." style="padding:5px 8px;border-radius:5px;border:1px solid #ccc;width:70%;">
-                            <button onclick="publicarRespuesta(${posts.length-1-idx})" style="background:#25d366;color:#fff;padding:5px 12px;border:none;border-radius:5px;">Publicar</button>
+                        <div id=\"responder-${post._id}\" style=\"display:none;margin-top:8px;\">
+                            <input type=\"text\" id=\"input-respuesta-${post._id}\" placeholder=\"Escribe una respuesta...\" style=\"padding:5px 8px;border-radius:5px;border:1px solid #ccc;width:70%;\">
+                            <button onclick=\"publicarRespuesta('${post._id}')\" style=\"background:#25d366;color:#fff;padding:5px 12px;border:none;border-radius:5px;\">Publicar</button>
                         </div>
-                        <div id="respuestas-${posts.length-1-idx}" style="margin-top:10px;">
-                            ${respuestas.map(r=>`<div style="background:#f8f8f8;border-radius:6px;padding:6px 10px;margin-bottom:4px;"><b>${r.nombre||'Anónimo'}:</b> ${r.texto}</div>`).join('')}
+                        <div class=\"respuestas\" id=\"respuestas-${post._id}\">
+                            ${respuestas.map(r=>`<div class=\"respuesta\"><b>${r.nombre||'Anónimo'}:</b> ${r.texto}</div>`).join('')}
                         </div>
                     </div>
                 </div>`;
             });
         }
+    });
+
+    function meGusta(id) {
+        const ref = db.ref('experiencias/'+id+'/likes');
+        ref.transaction(likes => (likes||0)+1);
     }
-    function meGusta(idx) {
-        let posts = JSON.parse(localStorage.getItem('experienciasMecanica')||'[]');
-        posts[idx].likes = (posts[idx].likes||0)+1;
-        localStorage.setItem('experienciasMecanica',JSON.stringify(posts));
-        document.getElementById('like-'+idx).textContent = posts[idx].likes;
+    function noMeGusta(id) {
+        const ref = db.ref('experiencias/'+id+'/dislikes');
+        ref.transaction(dislikes => (dislikes||0)+1);
     }
-    function noMeGusta(idx) {
-        let posts = JSON.parse(localStorage.getItem('experienciasMecanica')||'[]');
-        posts[idx].dislikes = (posts[idx].dislikes||0)+1;
-        localStorage.setItem('experienciasMecanica',JSON.stringify(posts));
-        document.getElementById('dislike-'+idx).textContent = posts[idx].dislikes;
-    }
-    function mostrarResponder(idx) {
-        let el = document.getElementById('responder-'+idx);
+    function mostrarResponder(id) {
+        let el = document.getElementById('responder-'+id);
         if(el) el.style.display = (el.style.display==='none')?'block':'none';
     }
-    function publicarRespuesta(idx) {
-        let input = document.getElementById('input-respuesta-'+idx);
+    function publicarRespuesta(id) {
+        let input = document.getElementById('input-respuesta-'+id);
         let texto = input.value.trim();
         if(!texto) return;
         let nombre = prompt('¿Tu nombre? (opcional)','');
-        let posts = JSON.parse(localStorage.getItem('experienciasMecanica')||'[]');
-        if(!posts[idx].respuestas) posts[idx].respuestas = [];
-        posts[idx].respuestas.push({nombre:nombre,texto:texto});
-        localStorage.setItem('experienciasMecanica',JSON.stringify(posts));
-        renderMuroExperiencias();
+        db.ref('experiencias/'+id+'/respuestas').once('value', snap => {
+            let respuestas = snap.val()||[];
+            respuestas.push({nombre,texto});
+            db.ref('experiencias/'+id+'/respuestas').set(respuestas);
+        });
+        input.value = '';
     }
-    function borrarComentario(idx) {
-        let posts = JSON.parse(localStorage.getItem('experienciasMecanica')||'[]');
-        if(confirm('¿Seguro que deseas borrar este comentario?')) {
-            posts.splice(idx,1);
-            localStorage.setItem('experienciasMecanica',JSON.stringify(posts));
-            renderMuroExperiencias();
-        }
-    }
-    document.getElementById('form-experiencia').onsubmit = function(e) {
-        e.preventDefault();
-        var nombre = document.getElementById('nombre-cliente').value.trim();
-        var texto = document.getElementById('texto-experiencia').value.trim();
-        var fotoInput = document.getElementById('foto-cliente');
-        var fecha = new Date().toLocaleString('es-PE', {year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'});
-        if(!texto) return;
-        var post = {nombre:nombre,texto:texto,fecha:fecha,foto:'',likes:0,dislikes:0,respuestas:[]};
-        var posts = JSON.parse(localStorage.getItem('experienciasMecanica')||'[]');
-        if(fotoInput.files && fotoInput.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                post.foto = e.target.result;
-                posts.push(post);
-                localStorage.setItem('experienciasMecanica',JSON.stringify(posts));
-                renderMuroExperiencias();
-            };
-            reader.readAsDataURL(fotoInput.files[0]);
-        } else {
-            posts.push(post);
-            localStorage.setItem('experienciasMecanica',JSON.stringify(posts));
-            renderMuroExperiencias();
-        }
-        this.reset();
-    };
-    document.addEventListener('DOMContentLoaded',function(){
-        renderMuroExperiencias();
-        // Botón para activar modo admin
-        if(!document.getElementById('btn-admin')) {
-            let btn = document.createElement('button');
-            btn.textContent = 'Modo administrador';
-            btn.id = 'btn-admin';
-            btn.style = 'margin:18px 0 0 0;background:#222;color:#fff;padding:7px 18px;border-radius:6px;border:none;cursor:pointer;float:right;';
-            btn.onclick = pedirClaveAdmin;
-            document.querySelector('.container').prepend(btn);
-        }
-    });
     </script>
 </body>
 </html>

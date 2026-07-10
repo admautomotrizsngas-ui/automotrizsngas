@@ -1,0 +1,6 @@
+{
+  "name": "Automotriz SN'GAS",
+  "description": "Taller de confianza en conversión y mantenimiento GLP y GNV. Reserva citas, gestiona tus vehículos y consulta diagnósticos en tiempo real.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

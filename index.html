@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SN'GAS ONLINE - Inicio, Tienda, Servicios y Cuenta</title>
+  <style>
+    /* Estilos Generales */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #f4f6f8;
+      color: #333;
+    }
+
+    /* Tira Corredora */
+    .marquee-container {
+      background-color: #16a34a;
+      color: #ffffff;
+      overflow: hidden;
+      white-space: nowrap;
+      padding: 0.5rem 0;
+      font-size: 0.9rem;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+    }
+
+    .marquee-text {
+      display: inline-block;
+      padding-left: 100%;
+      animation: marquee 20s linear infinite;
+    }
+
+    @keyframes marquee {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(-100%, 0); }
+    }
+
+    /* Encabezado y Navegación */
+    header {
+      background-color: #0f172a;
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #38bdf8;
+      cursor: pointer;
+    }
+
+    nav {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .nav-link {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: #38bdf8;
+    }
+
+    .filter-container {
+      flex: 1;
+      max-width: 500px;
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .filter-container input {
+      flex: 2;
+      padding: 0.6rem 1rem;
+      border: none;
+      border-radius: 4px;
+      font-size: 0.95rem;
+      outline: none;
+    }
+
+    .filter-container select {
+      flex: 1;
+      padding: 0.6rem 1rem;
+      border: none;
+      border-radius: 4px;
+      font-size: 0.95rem;
+      outline: none;
+      background-color: white;
+      color: #333;
+      cursor: pointer;
+      font-weight: 500;
+    }
+
+    /* Secciones */
+    .page-section {
+      display: none;
+    }
+
+    .page-section.active {
+      display: block;
+    }
+
+    .container {
+      padding: 2rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    /* PÁGINA DE INICIO */
+    .hero-banner {
+      background: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.8)), url('https://picsum.photos/id/1072/1200/400') center/cover;
+      color: white;
+      text-align: center;
+      padding: 4rem 1.5rem;
+      border-radius: 8px;
+      margin-bottom: 2rem;
+    }
+
+    .hero-banner h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #38bdf8;
+    }
+
+    .hero-banner p {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .btn-hero {
+      background-color: #16a34a;
+      color: white;
+      padding: 0.8rem 1.8rem;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1rem;
+      display: inline-block;
+      cursor: pointer;
+      margin: 0.3rem;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .feature-card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .feature-card h3 {
+      color: #0f172a;
+      margin-bottom: 0.5rem;
+    }
+
+    /* PÁGINAS DE TIENDA Y SERVICIOS */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .product-card {
+      background: white;
+      border-radius: 8px;
+      padding: 1rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .product-image {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 4px;
+      margin-bottom: 0.8rem;
+    }
+
+    .badges-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .product-badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: bold;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+
+    .badge-gasolina { background-color: #fef3c7; color: #b45309; }
+    .badge-gnv { background-color: #dcfce7; color: #15803d; }
+    .badge-glp { background-color: #e0f2fe; color: #0369a1; }
+    .badge-servicios { background-color: #f3e8ff; color: #6b21a8; }
+    .badge-exclusivo { background-color: #fce7f3; color: #be185d; }
+
+    .product-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .product-price {
+      font-size: 1.25rem;
+      color: #0284c7;
+      font-weight: bold;
+      margin-bottom: 0.8rem;
+    }
+
+    .btn-whatsapp {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      background-color: #25d366;
+      color: white;
+      text-decoration: none;
+      padding: 0.7rem;
+      border-radius: 4px;
+      font-weight: bold;
+      font-size: 0.95rem;
+      transition: background-color 0.2s;
+    }
+
+    .btn-whatsapp:hover {
+      background-color: #1da851;
+    }
+
+    /* ESTILOS DE REGISTRO / MI CUENTA */
+    .auth-container {
+      max-width: 450px;
+      margin: 0 auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .auth-form h2 {
+      margin-bottom: 1rem;
+      color: #0f172a;
+      text-align: center;
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.3rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 0.6rem;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+
+    .btn-submit {
+      width: 100%;
+      background-color: #0284c7;
+      color: white;
+      padding: 0.7rem;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 0.5rem;
+    }
+
+    .btn-submit:hover {
+      background-color: #0369a1;
+    }
+
+    .toggle-auth {
+      margin-top: 1rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #64748b;
+    }
+
+    .toggle-auth span {
+      color: #0284c7;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    /* PERFIL PRIVADO DEL CLIENTE */
+    .user-dashboard {
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .dashboard-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #f1f5f9;
+      padding-bottom: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .btn-logout {
+      background-color: #ef4444;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .exclusive-title {
+      color: #be185d;
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .filter-container {
+        flex-direction: column;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TIRA CORREDORA -->
+  <div class="marquee-container">
+    <div class="marquee-text">
+      LOS AUXILIOS MECÁNICOS A PARTIR DE LAS 6PM SON SOLO PARA LOS QUE CUENTAN CON EL SEGURO &nbsp;&nbsp;&nbsp;—&nbsp;&nbsp;&nbsp; LOS AUXILIOS MECÁNICOS A PARTIR DE LAS 6PM SON SOLO PARA LOS QUE CUENTAN CON EL SEGURO
+    </div>
+  </div>
+
+  <!-- ENCABEZADO Y NAVEGACIÓN -->
+  <header>
+    <div class="logo" onclick="showSection('home')">SN'GAS ONLINE</div>
+    
+    <nav>
+      <span class="nav-link active" id="nav-home" onclick="showSection('home')">Inicio</span>
+      <span class="nav-link" id="nav-shop" onclick="showSection('shop')">Tienda</span>
+      <span class="nav-link" id="nav-services" onclick="showSection('services')">Servicios</span>
+      <span class="nav-link" id="nav-account" onclick="showSection('account')">Mi Cuenta</span>
+    </nav>
+
+    <!-- Buscador (Solo visible en la Tienda) -->
+    <div class="filter-container" id="shopFilters" style="display: none;">
+      <input type="text" id="searchInput" placeholder="Buscar producto...">
+      <select id="categorySelect">
+        <option value="todas">Todas las categorías</option>
+        <option value="Gasolina">Gasolina</option>
+        <option value="GNV">GNV</option>
+        <option value="GLP">GLP</option>
+      </select>
+    </div>
+  </header>
+
+  <!-- SECCIÓN DE INICIO -->
+  <section id="homeSection" class="page-section active">
+    <div class="container">
+      <div class="hero-banner">
+        <h1>Bienvenidos a SN'GAS ONLINE</h1>
+        <p>Especialistas en conversiones, mantenimiento y repuestos para vehículos a GNV, GLP y Gasolina.</p>
+        <span class="btn-hero" onclick="showSection('shop')">Ir a la Tienda</span>
+        <span class="btn-hero" onclick="showSection('services')">Ver Servicios</span>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <h3>Soporte GNV & GLP</h3>
+          <p>Mantenimiento especializado y venta de repuestos certificados para tu vehículo.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Auxilio Mecánico</h3>
+          <p>Atención oportuna para emergencias mecánicas y servicios de mantenimiento regular.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Zona de Clientes</h3>
+          <p>Regístrate y accede a promociones exclusivas para socios registrados.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN DE LA TIENDA -->
+  <section id="shopSection" class="page-section">
+    <div class="container">
+      <main class="products-grid" id="productsGrid"></main>
+    </div>
+  </section>
+
+  <!-- SECCIÓN DE SERVICIOS -->
+  <section id="servicesSection" class="page-section">
+    <div class="container">
+      <main class="products-grid" id="servicesGrid"></main>
+    </div>
+  </section>
+
+  <!-- SECCIÓN MI CUENTA (REGISTRO / DASHBOARD) -->
+  <section id="accountSection" class="page-section">
+    <div class="container">
+      
+      <!-- FORMULARIO DE LOGIN / REGISTRO (Si no ha iniciado sesión) -->
+      <div class="auth-container" id="authBox">
+        
+        <!-- Vista Registro -->
+        <form class="auth-form" id="registerForm" onsubmit="handleRegister(event)">
+          <h2>Crear una Cuenta</h2>
+          <div class="form-group">
+            <label>Nombre Completo</label>
+            <input type="text" id="regName" required placeholder="Ej. Juan Pérez">
+          </div>
+          <div class="form-group">
+            <label>Correo Electrónico</label>
+            <input type="email" id="regEmail" required placeholder="correo@ejemplo.com">
+          </div>
+          <div class="form-group">
+            <label>Teléfono (WhatsApp)</label>
+            <input type="tel" id="regPhone" required placeholder="999888777">
+          </div>
+          <div class="form-group">
+            <label>Contraseña</label>
+            <input type="password" id="regPassword" required placeholder="******">
+          </div>
+          <button type="submit" class="btn-submit">Registrarme</button>
+          <div class="toggle-auth">
+            ¿Ya tienes cuenta? <span onclick="toggleAuthForms('login')">Inicia Sesión</span>
+          </div>
+        </form>
+
+        <!-- Vista Login -->
+        <form class="auth-form" id="loginForm" style="display: none;" onsubmit="handleLogin(event)">
+          <h2>Iniciar Sesión</h2>
+          <div class="form-group">
+            <label>Correo Electrónico</label>
+            <input type="email" id="loginEmail" required placeholder="correo@ejemplo.com">
+          </div>
+          <div class="form-group">
+            <label>Contraseña</label>
+            <input type="password" id="loginPassword" required placeholder="******">
+          </div>
+          <button type="submit" class="btn-submit">Ingresar</button>
+          <div class="toggle-auth">
+            ¿No tienes cuenta? <span onclick="toggleAuthForms('register')">Regístrate gratis</span>
+          </div>
+        </form>
+
+      </div>
+
+      <!-- DASHBOARD CLIENTE (Si ya inició sesión) -->
+      <div class="user-dashboard" id="userDashboard" style="display: none;">
+        <div class="dashboard-header">
+          <div>
+            <h2>Bienvenido, <span id="userNameDisplay">Cliente</span> 👋</h2>
+            <p style="color: #64748b;">Este es tu espacio exclusivo de beneficios y ofertas.</p>
+          </div>
+          <button class="btn-logout" onclick="handleLogout()">Cerrar Sesión</button>
+        </div>
+
+        <h3 class="exclusive-title">🎁 Productos Exclusivos para Socios</h3>
+        <main class="products-grid" id="exclusiveGrid"></main>
+      </div>
+
+    </div>
+  </section>
+
+<!-- Librería oficial de Supabase para el navegador -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+  // ==========================================
+  // 1. CONFIGURACIÓN DE SUPABASE
+  // ==========================================
+  const SUPABASE_URL = 'https://pcpcbdraksmlobfrhrpk.supabase.co';
+  const SUPABASE_KEY = 'sb_publishable_atbLcWJhwhFwPC5JCS8qmA_YIRmRUas';
+
+  // Inicialización correcta de Supabase para el navegador
+  let supabaseClient = null;
+  if (window.supabase && typeof window.supabase.createClient === 'function') {
+    supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+  } else {
+    console.error("No se pudo cargar la librería de Supabase.");
+  }
+
+  const whatsappNumber = "51999999999"; 
+
+  // ==========================================
+  // 2. CATÁLOGO Y DATOS
+  // ==========================================
+  const products = [
+    { id: 1, name: 'Gasolina Regular (90 Octanos)', category: ['Gasolina'], price: 16.50, image: 'https://picsum.photos/id/1070/300/200' },
+    { id: 2, name: 'Gasolina Premium (95 Octanos)', category: ['Gasolina'], price: 19.80, image: 'https://picsum.photos/id/1071/300/200' },
+    { id: 3, name: 'Carga GNV Estándar (m³)', category: ['GNV'], price: 1.75, image: 'https://picsum.photos/id/1072/300/200' },
+    { id: 4, name: 'Recarga GNV Alto Rendimiento', category: ['GNV'], price: 2.10, image: 'https://picsum.photos/id/1073/300/200' },
+    { id: 5, name: 'GLP Vehicular (Litro)', category: ['GLP'], price: 7.20, image: 'https://picsum.photos/id/1074/300/200' },
+    { id: 6, name: 'Balón GLP Doméstico 10kg', category: ['GLP'], price: 48.00, image: 'https://picsum.photos/id/1075/300/200' },
+    { id: 9, name: 'Filtro de Gas (GNV/GLP)', category: ['GNV', 'GLP'], price: 25.00, image: 'https://picsum.photos/id/1078/300/200' }
+  ];
+
+  const services = [
+    { id: 7, name: 'Cambio de Aceite + Filtro', category: ['Servicios'], price: 85.00, image: 'https://picsum.photos/id/1076/300/200' },
+    { id: 8, name: 'Lavado Premium y Encerado', category: ['Servicios'], price: 35.00, image: 'https://picsum.photos/id/1077/300/200' }
+  ];
+
+  const exclusiveProducts = [
+    { id: 10, name: 'Aditivo Limpiador de Inyectores GNV/GLP (Descuento VIP)', category: ['Exclusivo'], price: 18.00, image: 'https://picsum.photos/id/1079/300/200' },
+    { id: 11, name: 'Escaneo Electrónico Multimarca (Gratis por compra)', category: ['Exclusivo'], price: 0.00, image: 'https://picsum.photos/id/1080/300/200' },
+    { id: 12, name: 'Aceite Sintético 5W-30 Premium + Kit Filtros', category: ['Exclusivo'], price: 120.00, image: 'https://picsum.photos/id/1081/300/200' }
+  ];
+
+  // ==========================================
+  // 3. NAVEGACIÓN Y RENDERIZADO
+  // ==========================================
+  function showSection(sectionName) {
+    const sections = ['homeSection', 'shopSection', 'servicesSection', 'accountSection'];
+    const navs = ['nav-home', 'nav-shop', 'nav-services', 'nav-account'];
+    const shopFilters = document.getElementById('shopFilters');
+
+    sections.forEach(s => {
+      const el = document.getElementById(s);
+      if (el) el.classList.remove('active');
+    });
+
+    navs.forEach(n => {
+      const el = document.getElementById(n);
+      if (el) el.classList.remove('active');
+    });
+
+    if (sectionName === 'home') {
+      document.getElementById('homeSection').classList.add('active');
+      document.getElementById('nav-home').classList.add('active');
+      if (shopFilters) shopFilters.style.display = 'none';
+    } else if (sectionName === 'shop') {
+      document.getElementById('shopSection').classList.add('active');
+      document.getElementById('nav-shop').classList.add('active');
+      if (shopFilters) shopFilters.style.display = 'flex';
+    } else if (sectionName === 'services') {
+      document.getElementById('servicesSection').classList.add('active');
+      document.getElementById('nav-services').classList.add('active');
+      if (shopFilters) shopFilters.style.display = 'none';
+    } else if (sectionName === 'account') {
+      document.getElementById('accountSection').classList.add('active');
+      document.getElementById('nav-account').classList.add('active');
+      if (shopFilters) shopFilters.style.display = 'none';
+      checkUserSession();
+    }
+  }
+
+  function getBadgeClass(category) {
+    switch(category) {
+      case 'Gasolina': return 'badge-gasolina';
+      case 'GNV': return 'badge-gnv';
+      case 'GLP': return 'badge-glp';
+      case 'Servicios': return 'badge-servicios';
+      case 'Exclusivo': return 'badge-exclusivo';
+      default: return '';
+    }
+  }
+
+  function createCardHTML(item) {
+    const message = encodeURIComponent(`Hola, quiero solicitar/comprar: ${item.name} (Precio: S/ ${item.price.toFixed(2)})`);
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
+
+    const badgesHTML = item.category.map(cat => 
+      `<span class="product-badge ${getBadgeClass(cat)}">${cat}</span>`
+    ).join(' ');
+
+    return `
+      <div class="product-card">
+        <div>
+          <img src="${item.image}" alt="${item.name}" class="product-image">
+          <div class="badges-container">${badgesHTML}</div>
+          <div class="product-title">${item.name}</div>
+        </div>
+        <div>
+          <div class="product-price">S/ ${item.price.toFixed(2)}</div>
+          <a href="${whatsappUrl}" target="_blank" class="btn-whatsapp">
+            Solicitar por WhatsApp
+          </a>
+        </div>
+      </div>
+    `;
+  }
+
+  function renderProducts(items) {
+    const grid = document.getElementById('productsGrid');
+    if (!grid) return;
+    grid.innerHTML = items.length === 0 ? '<p style="grid-column: 1/-1; text-align: center; color: #64748b;">No se encontraron productos.</p>' : '';
+    items.forEach(p => grid.innerHTML += createCardHTML(p));
+  }
+
+  function renderServices(items) {
+    const grid = document.getElementById('servicesGrid');
+    if (!grid) return;
+    grid.innerHTML = '';
+    items.forEach(s => grid.innerHTML += createCardHTML(s));
+  }
+
+  function renderExclusive(items) {
+    const grid = document.getElementById('exclusiveGrid');
+    if (!grid) return;
+    grid.innerHTML = '';
+    items.forEach(e => grid.innerHTML += createCardHTML(e));
+  }
+
+  function filterProducts() {
+    const searchEl = document.getElementById('searchInput');
+    const catEl = document.getElementById('categorySelect');
+    if (!searchEl || !catEl) return;
+
+    const searchTerm = searchEl.value.toLowerCase();
+    const selectedCategory = catEl.value;
+
+    const filtered = products.filter(product => {
+      const matchesName = product.name.toLowerCase().includes(searchTerm);
+      const matchesCategory = selectedCategory === 'todas' || product.category.includes(selectedCategory);
+      return matchesName && matchesCategory;
+    });
+
+    renderProducts(filtered);
+  }
+
+  function toggleAuthForms(mode) {
+    const regForm = document.getElementById('registerForm');
+    const loginForm = document.getElementById('loginForm');
+    if (!regForm || !loginForm) return;
+
+    if (mode === 'login') {
+      regForm.style.display = 'none';
+      loginForm.style.display = 'block';
+    } else {
+      loginForm.style.display = 'none';
+      regForm.style.display = 'block';
+    }
+  }
+
+  // ==========================================
+  // 4. REGISTRO Y LOGIN EN LA NUBE (SUPABASE)
+  // ==========================================
+  async function handleRegister(e) {
+    e.preventDefault();
+    if (!supabaseClient) {
+      alert("Error: No se ha configurado la conexión a la base de datos.");
+      return;
+    }
+
+    const email = document.getElementById('regEmail').value.trim().toLowerCase();
+    const password = document.getElementById('regPassword').value.trim();
+    const name = document.getElementById('regName').value.trim();
+    const phone = document.getElementById('regPhone').value.trim();
+
+    const { data, error } = await supabaseClient
+      .from('usuarios')
+      .insert([{ nombre: name, email: email, telefono: phone, password: password }])
+      .select();
+
+    if (error) {
+      if (error.code === '23505') {
+        alert('Este correo ya está registrado. Intenta iniciar sesión.');
+        toggleAuthForms('login');
+      } else {
+        alert('Error al registrar: ' + error.message);
+      }
+      return;
+    }
+
+    const newUser = data[0];
+    localStorage.setItem('sngas_active_session', JSON.stringify(newUser));
+    alert('¡Registro exitoso en la nube! Bienvenido.');
+    checkUserSession();
+  }
+
+  async function handleLogin(e) {
+    e.preventDefault();
+    if (!supabaseClient) {
+      alert("Error: No se ha configurado la conexión a la base de datos.");
+      return;
+    }
+
+    const email = document.getElementById('loginEmail').value.trim().toLowerCase();
+    const pass = document.getElementById('loginPassword').value.trim();
+
+    const { data, error } = await supabaseClient
+      .from('usuarios')
+      .select('*')
+      .eq('email', email)
+      .eq('password', pass)
+      .maybeSingle();
+
+    if (data) {
+      localStorage.setItem('sngas_active_session', JSON.stringify(data));
+      alert('¡Bienvenido de nuevo!');
+      checkUserSession();
+    } else {
+      alert('Correo o contraseña incorrectos.');
+    }
+  }
+
+  function handleLogout() {
+    localStorage.removeItem('sngas_active_session');
+    checkUserSession();
+  }
+
+  function checkUserSession() {
+    const activeUser = JSON.parse(localStorage.getItem('sngas_active_session'));
+    const authBox = document.getElementById('authBox');
+    const userDashboard = document.getElementById('userDashboard');
+
+    if (activeUser) {
+      if (authBox) authBox.style.display = 'none';
+      if (userDashboard) userDashboard.style.display = 'block';
+      const nameDisp = document.getElementById('userNameDisplay');
+      if (nameDisp) nameDisp.textContent = activeUser.nombre || activeUser.name;
+      renderExclusive(exclusiveProducts);
+    } else {
+      if (authBox) authBox.style.display = 'block';
+      if (userDashboard) userDashboard.style.display = 'none';
+      toggleAuthForms('login');
+    }
+  }
+
+  // ==========================================
+  // 5. INICIALIZACIÓN DE EVENTOS
+  // ==========================================
+  document.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.getElementById('searchInput');
+    const categorySelect = document.getElementById('categorySelect');
+
+    if (searchInput) searchInput.addEventListener('input', filterProducts);
+    if (categorySelect) categorySelect.addEventListener('change', filterProducts);
+
+    renderProducts(products);
+    renderServices(services);
+  });
+</script>

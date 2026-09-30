@@ -1,0 +1,21 @@
+/* AJUSTE PARA AGRANDAR LA IMAGEN */
+.hero-right {
+  flex: 1.4; /* Aumentamos el espacio dedicado a la imagen */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-illustration {
+  width: 100%;
+  max-width: 520px; /* Incrementado para que la imagen se vea más grande */
+  height: auto;
+  max-height: 380px; /* Mayor altura permitida */
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+/* Efecto opcional: resalta ligeramente al pasar el cursor */
+.hero-illustration:hover {
+  transform: scale(1.03);
+}

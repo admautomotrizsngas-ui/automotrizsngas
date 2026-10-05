@@ -1,0 +1,1963 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SN'GAS ONLINE - Inicio, Tienda, Servicios y Cuenta Halloween</title>
+  <style>
+    /* Estilos Generales */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #f4f6f8;
+      color: #333;
+    }
+
+    /* Tira Corredora */
+    .marquee-container {
+      background-color: #16a34a;
+      color: #ffffff;
+      overflow: hidden;
+      white-space: nowrap;
+      padding: 0.5rem 0;
+      font-size: 0.9rem;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+    }
+
+    .marquee-text {
+      display: inline-block;
+      padding-left: 100%;
+      animation: marquee 20s linear infinite;
+    }
+
+    @keyframes marquee {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(-100%, 0); }
+    }
+
+    /* Encabezado y Navegación */
+    header {
+      background-color: #0f172a;
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #38bdf8;
+      cursor: pointer;
+    }
+
+    nav {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .nav-link {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: #38bdf8;
+    }
+
+    .filter-container {
+      flex: 1;
+      max-width: 500px;
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .filter-container input {
+      flex: 2;
+      padding: 0.6rem 1rem;
+      border: none;
+      border-radius: 4px;
+      font-size: 0.95rem;
+      outline: none;
+    }
+
+    .filter-container select {
+      flex: 1;
+      padding: 0.6rem 1rem;
+      border: none;
+      border-radius: 4px;
+      font-size: 0.95rem;
+      outline: none;
+      background-color: white;
+      color: #333;
+      cursor: pointer;
+      font-weight: 500;
+    }
+
+    /* Secciones */
+    .page-section {
+      display: none;
+    }
+
+    .page-section.active {
+      display: block;
+    }
+
+    .container {
+      padding: 2rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      color: #0f172a;
+      margin-bottom: 0.5rem;
+      text-align: center;
+    }
+
+    .section-subtitle {
+      font-size: 1rem;
+      color: #64748b;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    /* PÁGINA DE INICIO */
+    .hero-banner {
+      background: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.8)), url('iniciohalloween.jfif') center/cover;
+      color: white;
+      text-align: center;
+      padding: 4rem 1.5rem;
+      border-radius: 8px;
+      margin-bottom: 2rem;
+    }
+
+    .hero-banner h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #38bdf8;
+    }
+
+    .hero-banner p {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .btn-hero {
+      background-color: #16a34a;
+      color: white;
+      padding: 0.8rem 1.8rem;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1rem;
+      display: inline-block;
+      cursor: pointer;
+      margin: 0.3rem;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .feature-card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .feature-card h3 {
+      color: #0f172a;
+      margin-bottom: 0.5rem;
+    }
+
+    /* PÁGINAS DE TIENDA Y SERVICIOS */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .product-card {
+      background: white;
+      border-radius: 8px;
+      padding: 1.2rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .product-image {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 6px;
+      margin-bottom: 0.8rem;
+    }
+
+    .badges-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .product-badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: bold;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+
+    .badge-gasolina { background-color: #fef3c7; color: #b45309; }
+    .badge-gnv { background-color: #dcfce7; color: #15803d; }
+    .badge-glp { background-color: #e0f2fe; color: #0369a1; }
+
+    .product-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 0.4rem;
+    }
+
+    .product-desc {
+      font-size: 0.88rem;
+      color: #64748b;
+      margin-bottom: 0.8rem;
+      line-height: 1.35;
+    }
+
+    .product-price {
+      font-size: 1.25rem;
+      color: #0284c7;
+      font-weight: bold;
+      margin-bottom: 0.8rem;
+    }
+
+    .btn-whatsapp {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      background-color: #25d366;
+      color: white;
+      text-decoration: none;
+      padding: 0.7rem;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 0.95rem;
+      transition: background-color 0.2s;
+    }
+
+    .btn-whatsapp:hover {
+      background-color: #1da851;
+    }
+
+    /* ==========================================
+       🎃 ESTILOS HALLOWEEN PARA "MI CUENTA"
+       ========================================== */
+    #accountSection {
+      background: radial-gradient(circle at top, #1a0b2e 0%, #0d0614 100%);
+      padding-top: 2rem;
+      padding-bottom: 4rem;
+      min-height: 80vh;
+      color: #f3e8ff;
+    }
+
+    /* AUTH CONTAINER HALLOWEEN */
+    .auth-container {
+      max-width: 450px;
+      margin: 0 auto;
+      background: rgba(23, 15, 38, 0.95);
+      padding: 2.2rem;
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(249, 115, 22, 0.2), inset 0 0 15px rgba(147, 51, 234, 0.3);
+      border: 2px solid #a855f7;
+    }
+
+    .auth-form h2 {
+      margin-bottom: 1.2rem;
+      color: #f97316;
+      text-align: center;
+      font-size: 1.8rem;
+      letter-spacing: 1px;
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.4rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #e9d5ff;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #6b21a8;
+      background-color: #0f0a1c;
+      color: #fff;
+      border-radius: 8px;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .form-group input:focus {
+      border-color: #f97316;
+      box-shadow: 0 0 8px rgba(249, 115, 22, 0.6);
+    }
+
+    .btn-submit {
+      width: 100%;
+      background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
+      color: white;
+      padding: 0.8rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 0.5rem;
+      box-shadow: 0 4px 14px rgba(234, 88, 12, 0.4);
+      transition: all 0.2s;
+    }
+
+    .btn-submit:hover {
+      background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(249, 115, 22, 0.6);
+    }
+
+    .toggle-auth {
+      margin-top: 1.2rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #c084fc;
+    }
+
+    .toggle-auth span {
+      color: #f97316;
+      cursor: pointer;
+      font-weight: bold;
+      text-decoration: underline;
+    }
+
+    /* DASHBOARD CLIENTE HALLOWEEN */
+    .user-dashboard {
+      background: rgba(23, 15, 38, 0.85);
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+      border: 1px solid #581c87;
+      backdrop-filter: blur(5px);
+    }
+
+    .dashboard-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 2px solid #3b0764;
+      padding-bottom: 1.5rem;
+      margin-bottom: 1.5rem;
+      gap: 1rem;
+    }
+
+    .dashboard-header h2 {
+      color: #f97316;
+      font-size: 1.8rem;
+    }
+
+    .user-greeting-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    /* PLACA TENEBROSA */
+    .plate-top-box {
+      margin-bottom: 1rem;
+      background-color: #0f0a1c;
+      border: 2px dashed #f97316;
+      padding: 1.2rem;
+      border-radius: 12px;
+      color: white;
+      box-shadow: 0 0 12px rgba(249, 115, 22, 0.15);
+    }
+
+    .plate-form-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .plate-form-container label {
+      font-size: 0.9rem;
+      font-weight: bold;
+      color: #e9d5ff;
+    }
+
+    .plate-input-wrapper {
+      display: flex;
+      gap: 8px;
+      flex: 1;
+      max-width: 320px;
+    }
+
+    .plate-input-wrapper input {
+      width: 100%;
+      background-color: #1e112a;
+      border: 1px solid #9333ea;
+      color: #f97316;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 1.1rem;
+      font-weight: 800;
+      text-align: center;
+      padding: 0.5rem;
+      border-radius: 6px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      outline: none;
+    }
+
+    .plate-input-wrapper input:focus {
+      border-color: #f97316;
+      box-shadow: 0 0 8px rgba(249, 115, 22, 0.5);
+    }
+
+    .btn-save-plate {
+      background: #f97316;
+      color: #0d0614;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      font-weight: 800;
+      cursor: pointer;
+      font-size: 0.9rem;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+
+    .btn-save-plate:hover {
+      background-color: #fb923c;
+      box-shadow: 0 0 10px rgba(249, 115, 22, 0.8);
+    }
+
+    .plate-registered-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background-color: #1e112a;
+      border: 2px solid #f97316;
+      padding: 8px 16px;
+      border-radius: 8px;
+    }
+
+    .plate-registered-badge .plate-label {
+      font-size: 0.85rem;
+      color: #d8b4fe;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .plate-registered-badge .plate-number {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #f97316;
+      font-family: 'Courier New', Courier, monospace;
+      letter-spacing: 2px;
+      text-shadow: 0 0 5px rgba(249, 115, 22, 0.5);
+    }
+
+    /* ⏱️ MONITOR DE SERVICIO EN TIEMPO REAL (DEBAJO DE LA PLACA) */
+    .service-monitor-box {
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, #170b28 0%, #0d0614 100%);
+      border: 2px solid #6b21a8;
+      border-radius: 12px;
+      padding: 1.2rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    /* Colores dinámicos para el contenedor del monitor */
+    .service-monitor-box.phase-red {
+      border-color: #ef4444;
+      box-shadow: 0 0 15px rgba(239, 68, 68, 0.3);
+    }
+    .service-monitor-box.phase-yellow {
+      border-color: #f59e0b;
+      box-shadow: 0 0 15px rgba(245, 158, 11, 0.3);
+    }
+    .service-monitor-box.phase-green {
+      border-color: #10b981;
+      box-shadow: 0 0 18px rgba(16, 185, 129, 0.4);
+    }
+
+    .monitor-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .monitor-title {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #f97316;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .status-badge-pill {
+      font-size: 0.78rem;
+      font-weight: 800;
+      padding: 4px 12px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .status-badge-pill.phase-red {
+      background-color: #ef4444;
+      color: #ffffff;
+      box-shadow: 0 0 8px rgba(239, 68, 68, 0.6);
+    }
+
+    .status-badge-pill.phase-yellow {
+      background-color: #f59e0b;
+      color: #000000;
+      box-shadow: 0 0 8px rgba(245, 158, 11, 0.6);
+    }
+
+    .status-badge-pill.phase-green {
+      background-color: #10b981;
+      color: #ffffff;
+      box-shadow: 0 0 10px rgba(16, 185, 129, 0.8);
+    }
+
+    .status-badge-pill.idle {
+      background-color: #475569;
+      color: #cbd5e1;
+    }
+
+    .service-info-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .service-name {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #ffffff;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    }
+
+    .service-timer {
+      font-size: 1.15rem;
+      font-weight: 800;
+      font-family: 'Courier New', Courier, monospace;
+      color: #f3e8ff;
+    }
+
+    .progress-bar-track {
+      width: 100%;
+      height: 16px;
+      background-color: #0f0a1c;
+      border: 1px solid #3b0764;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 10px;
+      position: relative;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.8);
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      width: 0%;
+      border-radius: 10px;
+      transition: width 0.5s ease, background-color 0.5s ease;
+    }
+
+    .progress-bar-fill.phase-red {
+      background: linear-gradient(90deg, #dc2626, #ef4444);
+      box-shadow: 0 0 10px #ef4444;
+    }
+
+    .progress-bar-fill.phase-yellow {
+      background: linear-gradient(90deg, #d97706, #f59e0b);
+      box-shadow: 0 0 10px #f59e0b;
+    }
+
+    .progress-bar-fill.phase-green {
+      background: linear-gradient(90deg, #059669, #10b981);
+      box-shadow: 0 0 12px #10b981;
+    }
+
+    .monitor-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+      color: #c084fc;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .btn-vip-whatsapp {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background-color: #25d366;
+      color: white;
+      text-decoration: none;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: bold;
+      box-shadow: 0 2px 10px rgba(37, 211, 102, 0.4);
+      transition: transform 0.2s, background-color 0.2s;
+    }
+
+    .btn-vip-whatsapp:hover {
+      background-color: #1da851;
+      transform: scale(1.05);
+    }
+
+    /* TARJETAS DE RECOMPENSAS HALLOWEEN */
+    .rewards-wrapper {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      width: 100%;
+      margin: 20px 0;
+    }
+
+    .reward-card {
+      flex: 1;
+      min-width: 280px;
+      border-radius: 14px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .reward-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(168, 85, 247, 0.3);
+    }
+
+    .monegas-card {
+      background: linear-gradient(135deg, #1e0a38 0%, #2e1052 100%);
+      color: white;
+      border-left: 5px solid #f97316;
+    }
+
+    .gift-card {
+      background: linear-gradient(135deg, #3b0764 0%, #581c87 100%);
+      color: #f3e8ff;
+      border-left: 5px solid #a855f7;
+    }
+
+    .cert-card {
+      background: linear-gradient(135deg, #064e3b 0%, #022c22 100%);
+      color: white;
+      border-left: 5px solid #10b981;
+    }
+
+    .cert-box {
+      background: rgba(0, 0, 0, 0.4);
+      border: 2px solid #10b981;
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #6ee7b7;
+    }
+
+    .vip-card {
+      background: linear-gradient(135deg, #2a085c 0%, #170338 100%);
+      color: white;
+      border: 2px solid #a855f7;
+      border-left: 6px solid #f97316;
+      width: 100%;
+      margin-bottom: 25px;
+      box-shadow: 0 0 15px rgba(168, 85, 247, 0.2);
+    }
+
+    .reward-inner-box {
+      margin: 14px 0 10px 0;
+      padding: 14px 16px;
+      border-radius: 10px;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .monegas-box {
+      background: rgba(15, 10, 28, 0.8);
+      border: 2px solid #f97316;
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #f97316;
+      gap: 8px;
+      text-shadow: 0 0 8px rgba(249, 115, 22, 0.4);
+    }
+
+    .monegas-box small {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #fb923c;
+    }
+
+    .gift-box {
+      background: rgba(15, 10, 28, 0.8);
+      border: 2px dashed #a855f7;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #e9d5ff;
+      line-height: 1.4;
+    }
+
+    .reward-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .reward-icon {
+      font-size: 1.4rem;
+    }
+
+    .reward-tag {
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #f97316;
+    }
+
+    .reward-footer-text {
+      font-size: 0.85rem;
+      opacity: 0.9;
+      margin-top: 8px;
+      line-height: 1.4;
+      color: #d8b4fe;
+    }
+
+    .btn-logout {
+      background-color: #ef4444;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.2s;
+    }
+
+    .btn-logout:hover {
+      background-color: #dc2626;
+    }
+
+    /* CALCULADORA HALLOWEEN */
+    .km-calc-box {
+      background: #170f26;
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin: 20px 0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      border-left: 5px solid #f97316;
+      border: 1px solid #3b0764;
+    }
+
+    .km-calc-box h3 {
+      color: #f97316;
+      margin-bottom: 6px;
+      font-size: 1.25rem;
+    }
+
+    .km-calc-box > p {
+      color: #c084fc;
+      font-size: 0.9rem;
+      margin-bottom: 16px;
+    }
+
+    .km-input-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      margin-bottom: 18px;
+    }
+
+    .km-input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .km-input-group label {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #e9d5ff;
+    }
+
+    .km-input-group input[type="number"] {
+      padding: 0.65rem 0.8rem;
+      border: 1px solid #6b21a8;
+      background-color: #0f0a1c;
+      color: #fff;
+      border-radius: 6px;
+      font-size: 1rem;
+      outline: none;
+    }
+
+    .btn-calcular {
+      width: auto;
+      margin-top: 0;
+      padding: 0.65rem 1.6rem;
+      background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+      white-space: nowrap;
+    }
+
+    .maintenance-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 14px;
+    }
+
+    .maint-card {
+      border-radius: 10px;
+      padding: 16px;
+      border-left: 5px solid #64748b;
+      background: #0f0a1c;
+      border: 1px solid #2e1052;
+    }
+
+    .maint-card-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .maint-icon {
+      font-size: 1.3rem;
+    }
+
+    .maint-title {
+      font-weight: 700;
+      font-size: 0.92rem;
+      color: #f3e8ff;
+    }
+
+    .maint-status-badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 2px 10px;
+      border-radius: 12px;
+      margin-bottom: 8px;
+      background: #64748b;
+      color: white;
+    }
+
+    .maint-detail {
+      font-size: 0.85rem;
+      color: #cbd5e1;
+      line-height: 1.4;
+    }
+
+    .maint-card.status-green {
+      border-left-color: #10b981;
+      background: #06201b;
+    }
+    .maint-card.status-green .maint-status-badge {
+      background: #10b981;
+    }
+
+    .maint-card.status-yellow {
+      border-left-color: #f59e0b;
+      background: #2b1a04;
+    }
+    .maint-card.status-yellow .maint-status-badge {
+      background: #f59e0b;
+      color: #000;
+    }
+
+    .maint-card.status-red {
+      border-left-color: #ef4444;
+      background: #2c0b0e;
+    }
+    .maint-card.status-red .maint-status-badge {
+      background: #ef4444;
+    }
+
+    .date-maintenance-block {
+      margin-top: 22px;
+      padding-top: 18px;
+      border-top: 2px dashed #3b0764;
+    }
+
+    .date-maintenance-block h4 {
+      color: #f97316;
+      font-size: 1rem;
+      margin-bottom: 4px;
+    }
+
+    .date-maintenance-block > p {
+      color: #c084fc;
+      font-size: 0.85rem;
+      margin-bottom: 14px;
+    }
+
+    /* BÚSQUEDA OBD-II HALLOWEEN */
+    .dtc-section {
+      background: #0f0a1c;
+      color: white;
+      padding: 20px;
+      border-radius: 12px;
+      margin: 25px 0;
+      border-left: 5px solid #a855f7;
+      border: 1px solid #3b0764;
+    }
+
+    .dtc-header h3 {
+      font-size: 1.25rem;
+      color: #c084fc;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .dtc-header p {
+      font-size: 0.9rem;
+      color: #e9d5ff;
+      margin-bottom: 16px;
+    }
+
+    .dtc-search-box {
+      display: flex;
+      gap: 10px;
+      max-width: 500px;
+    }
+
+    .dtc-search-box input {
+      flex: 1;
+      padding: 10px 14px;
+      border-radius: 6px;
+      border: 1px solid #6b21a8;
+      background: #170f26;
+      color: #fff;
+      font-size: 1rem;
+      text-transform: uppercase;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .dtc-search-box button {
+      background: #a855f7;
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .dtc-search-box button:hover {
+      background: #9333ea;
+    }
+
+    .dtc-result-card {
+      margin-top: 16px;
+      background: #170f26;
+      border-radius: 8px;
+      padding: 16px;
+      border: 1px solid #581c87;
+    }
+
+    .dtc-code-title {
+      font-size: 1.2rem;
+      color: #f97316;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .dtc-block strong {
+      color: #c084fc;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .filter-container {
+        flex-direction: column;
+        width: 100%;
+      }
+      .dashboard-header {
+        flex-direction: column;
+      }
+      .rewards-wrapper {
+        flex-direction: column;
+        gap: 12px;
+      }
+      .dtc-search-box {
+        flex-direction: column;
+      }
+      .plate-form-container {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .plate-input-wrapper {
+        max-width: 100%;
+      }
+      .service-info-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TIRA CORREDORA -->
+  <div class="marquee-container">
+    <div class="marquee-text">
+      🎃 ¡OFERTAS DE HALLOWEEN! LOS AUXILIOS MECÁNICOS NOCTURNOS A PARTIR DE LAS 6PM SON SOLO PARA CLIENTES VIP REGISTRADOS 👻
+    </div>
+  </div>
+
+  <!-- ENCABEZADO Y NAVEGACIÓN -->
+  <header>
+    <div class="logo" onclick="showSection('home')">SN'GAS ONLINE</div>
+    
+    <nav>
+      <span class="nav-link active" id="nav-home" onclick="showSection('home')">Inicio</span>
+      <span class="nav-link" id="nav-shop" onclick="showSection('shop')">Tienda</span>
+      <span class="nav-link" id="nav-services" onclick="showSection('services')">Servicios</span>
+      <span class="nav-link" id="nav-account" onclick="showSection('account')">🎃 Mi Cuenta</span>
+    </nav>
+
+    <!-- Buscador (Solo visible en la Tienda) -->
+    <div class="filter-container" id="shopFilters" style="display: none;">
+      <input type="text" id="searchInput" placeholder="Buscar producto...">
+      <select id="categorySelect">
+        <option value="todas">Todas las categorías</option>
+        <option value="Gasolina">Gasolina</option>
+        <option value="GNV">GNV</option>
+        <option value="GLP">GLP</option>
+      </select>
+    </div>
+  </header>
+
+  <!-- SECCIÓN DE INICIO -->
+  <section id="homeSection" class="page-section active">
+    <div class="container">
+      <div class="hero-banner">
+        <h1>Bienvenidos a SN'GAS ONLINE</h1>
+        <p>Especialistas en conversiones, mantenimiento y repuestos para vehículos a GNV, GLP y Gasolina.</p>
+        <span class="btn-hero" onclick="showSection('shop')">Ir a la Tienda</span>
+        <span class="btn-hero" onclick="showSection('services')">Ver Servicios</span>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <h3>Soporte GNV & GLP</h3>
+          <p>Mantenimiento especializado y venta de repuestos certificados para tu vehículo.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Auxilio Mecánico</h3>
+          <p>Atención oportuna para emergencias mecánicas y servicios de mantenimiento regular.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Zona de Clientes</h3>
+          <p>Regístrate y accede a diagnósticos de códigos de error y seguimiento en tiempo real de tu servicio.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN DE LA TIENDA -->
+  <section id="shopSection" class="page-section">
+    <div class="container">
+      <h2 class="section-title">Tienda de Repuestos</h2>
+      <p class="section-subtitle">Repuestos e insumos certificados para GNV, GLP y Gasolina</p>
+      <main class="products-grid" id="productsGrid"></main>
+    </div>
+  </section>
+
+  <!-- SECCIÓN DE SERVICIOS -->
+  <section id="servicesSection" class="page-section">
+    <div class="container">
+      <h2 class="section-title">Nuestros Servicios Especializados</h2>
+      <p class="section-subtitle">Soluciones profesionales en mecánica integral, electrónica vehicular y sistemas a gas</p>
+      <main class="products-grid" id="servicesGrid"></main>
+    </div>
+  </section>
+
+  <!-- SECCIÓN MI CUENTA (HALLOWEEN EDITION 🎃) -->
+  <section id="accountSection" class="page-section">
+    <div class="container">
+      
+      <!-- FORMULARIO DE LOGIN / REGISTRO HALLOWEEN -->
+      <div class="auth-container" id="authBox">
+        
+        <!-- Registro -->
+        <form class="auth-form" id="registerForm" onsubmit="handleRegister(event)">
+          <h2>🎃 Únete a la Cripta VIP</h2>
+          <div class="form-group">
+            <label>Nombre Completo</label>
+            <input type="text" id="regName" required placeholder="Ej. Juan Pérez">
+          </div>
+          <div class="form-group">
+            <label>Correo Electrónico</label>
+            <input type="email" id="regEmail" required placeholder="correo@ejemplo.com">
+          </div>
+          <div class="form-group">
+            <label>Teléfono (WhatsApp)</label>
+            <input type="tel" id="regPhone" required placeholder="999888777">
+          </div>
+          <div class="form-group">
+            <label>Contraseña</label>
+            <input type="password" id="regPassword" required placeholder="******">
+          </div>
+          <button type="submit" class="btn-submit">👻 Registrar mi Cuenta</button>
+          <div class="toggle-auth">
+            ¿Ya eres socio? <span onclick="toggleAuthForms('login')">Ingresa aquí</span>
+          </div>
+        </form>
+
+        <!-- Login -->
+        <form class="auth-form" id="loginForm" style="display: none;" onsubmit="handleLogin(event)">
+          <h2>🦇 Iniciar Sesión</h2>
+          <div class="form-group">
+            <label>Correo Electrónico</label>
+            <input type="email" id="loginEmail" required placeholder="correo@ejemplo.com">
+          </div>
+          <div class="form-group">
+            <label>Contraseña</label>
+            <input type="password" id="loginPassword" required placeholder="******">
+          </div>
+          <button type="submit" class="btn-submit">🔮 Entrar a mi Portal</button>
+          <div class="toggle-auth">
+            ¿Aún no tienes cuenta? <span onclick="toggleAuthForms('register')">Regístrate gratis</span>
+          </div>
+        </form>
+
+      </div>
+
+      <!-- DASHBOARD CLIENTE HALLOWEEN -->
+      <div class="user-dashboard" id="userDashboard" style="display: none;">
+        
+        <!-- RECUADRO DE PLACA HALLOWEEN -->
+        <div class="plate-top-box">
+          <!-- Modo Registro -->
+          <div id="plateInputContainer" class="plate-form-container" style="display: none;">
+            <label for="userPlateInput">👻 REGISTRA LA PLACA DE TU VEHÍCULO:</label>
+            <div class="plate-input-wrapper">
+              <input type="text" id="userPlateInput" placeholder="ABC123" maxlength="6" oninput="this.value = this.value.toUpperCase().replace(/[^A-Z0-9]/g, '')">
+              <button type="button" class="btn-save-plate" onclick="handleSavePlate()">Guardar Placa</button>
+            </div>
+          </div>
+
+          <!-- Modo Registrado -->
+          <div id="plateDisplayContainer" class="plate-registered-badge" style="display: none;">
+            <span class="plate-label">🚗 PLACA:</span>
+            <span id="userPlateDisplay" class="plate-number">------</span>
+          </div>
+        </div>
+
+        <!-- ⏱️ MONITOR DE TIEMPO DE SERVICIO DEBAJO DE LA PLACA -->
+        <div id="serviceMonitorBox" class="service-monitor-box phase-red">
+          <div class="monitor-header">
+            <div class="monitor-title">
+              <span>🛠️ MONITOR DE SERVICIO EN TALLER</span>
+            </div>
+            <span id="serviceStatusPill" class="status-badge-pill idle">Sin Servicio Activo</span>
+          </div>
+
+          <div class="service-info-row">
+            <div id="serviceNameDisplay" class="service-name">Ningún servicio en proceso</div>
+            <div id="serviceTimeDisplay" class="service-timer">00 min / 00 min</div>
+          </div>
+
+          <div class="progress-bar-track">
+            <div id="serviceProgressBar" class="progress-bar-fill phase-red"></div>
+          </div>
+
+          <div class="monitor-footer">
+            <span id="serviceRemainingText">Esperando ingreso a taller...</span>
+            <span id="serviceStartTimeDisplay" style="font-size: 0.8rem; opacity: 0.8;">Inicio: --:--</span>
+          </div>
+        </div>
+
+        <div class="dashboard-header">
+          <div>
+            <div class="user-greeting-container">
+              <h2>🎃 Hola, <span id="userNameDisplay">Cliente</span> 🧙‍♂️</h2>
+
+              <a id="vipWhatsappLink" href="#" target="_blank" class="btn-vip-whatsapp" style="display: none;">
+                💬 Soporte VIP Nocturno
+              </a>
+            </div>
+            <p style="color: #d8b4fe;">Espacio exclusivo de beneficios, diagnósticos y auxilio mecánico de Noche de Brujas.</p>
+          </div>
+          <button class="btn-logout" onclick="handleLogout()">Salir</button>
+        </div>
+
+        <!-- TARJETA VIP HALLOWEEN -->
+        <div class="reward-card vip-card">
+          <div class="reward-header">
+            <span class="reward-icon">🦇</span>
+            <span class="reward-tag">Membresía Nocturna VIP SN'GAS</span>
+          </div>
+          <div class="reward-body">
+            <p id="subscriptionStatusText" class="reward-footer-text">
+              Acceso prioritario a auxilio mecánico nocturno pasadas las 6:00 PM, revisión express de fallas y promociones en este Halloween.
+            </p>
+            <button id="btnSubscribe" onclick="handleSubscription()" class="btn-submit" style="margin-top: 12px;">
+              🎃 Solicitar / Renovar Membresía VIP
+            </button>
+          </div>
+        </div>
+
+        <!-- RECOMPENSAS HALLOWEEN -->
+        <div class="rewards-wrapper">
+          <div class="reward-card monegas-card">
+            <div class="reward-header">
+              <span class="reward-icon">🍬</span>
+              <span class="reward-tag">Dulce o Truco - Puntos</span>
+            </div>
+            <div class="reward-body">
+              <div class="reward-inner-box monegas-box">
+                <span id="userMonegasDisplay">0</span>
+                <small>Monegas</small>
+              </div>
+              <p class="reward-footer-text">
+                Acumula puntos embrujados en cada mantenimiento y canjéalos por pociones/descuentos.
+              </p>
+            </div>
+          </div>
+
+          <div class="reward-card gift-card">
+            <div class="reward-header">
+              <span class="reward-icon">🎁</span>
+              <span class="reward-tag">Tu Beneficio Sorpresa</span>
+            </div>
+            <div class="reward-body">
+              <div class="reward-inner-box gift-box">
+                <span id="userGiftDisplay">Cargando beneficio...</span>
+              </div>
+              <p class="reward-footer-text">
+                Muestra este pase misterioso en caja para reclamar tu premio.
+              </p>
+            </div>
+          </div>
+
+          <div class="reward-card cert-card" id="certCard" style="display: none;">
+            <div class="reward-header">
+              <span class="reward-icon">📜</span>
+              <span class="reward-tag">Certificación Anual</span>
+            </div>
+            <div class="reward-body">
+              <div class="reward-inner-box cert-box" id="certBox">
+                <span id="userCertDisplay">Sin programar</span>
+              </div>
+              <p class="reward-footer-text" id="certFooterText">
+                Renueva tu inspección a tiempo para evitar sanciones del averno.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- CALCULADORA DE MANTENIMIENTOS HALLOWEEN -->
+        <div class="km-calc-box">
+          <h3>🕷️ Calculadora Espectral de Mantenimientos</h3>
+          <p>Ingresa el kilometraje actual de tu vehículo para verificar qué mantenimientos están por vencer o caducados.</p>
+          <div class="km-input-row">
+            <div class="km-input-group">
+              <label for="kmActualInput">Kilometraje Actual</label>
+              <input type="number" id="kmActualInput" placeholder="Ej. 45000" min="0">
+            </div>
+            <button type="button" class="btn-submit btn-calcular" onclick="calcularMantenimientos()">Calcular Estado</button>
+          </div>
+          <div id="maintenanceGrid" class="maintenance-grid"></div>
+
+          <div class="date-maintenance-block">
+            <h4>📅 Revisiones y Trámites por Fecha</h4>
+            <p>Control exacto de expiración por calendario.</p>
+            <div id="dateMaintenanceGrid" class="maintenance-grid"></div>
+          </div>
+        </div>
+
+        <!-- BÚSQUEDA CÓDIGOS OBD-II HALLOWEEN -->
+        <div class="dtc-section">
+          <div class="dtc-header">
+            <h3>🔮 Inspector de Luces Embrujadas (Check Engine / OBD-II)</h3>
+            <p>Escribe el código del escáner (ej: P0100, P0171, P0300, P0600) para revelar qué mal padece tu motor y cómo curarlo.</p>
+          </div>
+          <div class="dtc-search-box">
+            <input type="text" id="dtcInput" placeholder="Escribe el código (ej. P0300)" onkeyup="if(event.key==='Enter') searchErrorCode()">
+            <button onclick="searchErrorCode()">Consultar Hechizo</button>
+          </div>
+          <div id="dtcResultContainer" style="display: none;"></div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Librería de Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script>
+    // ==========================================
+    // 1. CONFIGURACIÓN DE SUPABASE Y WHATSAPP
+    // ==========================================
+    const SUPABASE_URL = 'https://pcpcbdraksmlobfrhrpk.supabase.co';
+    const SUPABASE_KEY = 'sb_publishable_atbLcWJhwhFwPC5JCS8qmA_YIRmRUas';
+
+    let supabaseClient = null;
+    let serviceTimerInterval = null;
+    let currentServiceData = null;
+
+    function initSupabaseClient(retries = 15) {
+      if (window.supabase && typeof window.supabase.createClient === 'function') {
+        supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+        console.log('Supabase conectado correctamente.');
+      } else if (retries > 0) {
+        setTimeout(() => initSupabaseClient(retries - 1), 300);
+      } else {
+        console.error("No se pudo cargar la librería de Supabase.");
+      }
+    }
+    initSupabaseClient();
+
+    const whatsappNumber = "51901939637"; 
+    let isUserVipActive = false;
+
+    // CONFIGURACIÓN MANTENIMIENTOS POR KILOMETRAJE
+    const KM_MAINTENANCE_CONFIG = [
+      { key: 'mantenimiento_gas',    label: 'Mantenimiento de Gas (GNV/GLP)', icon: '⛽', interval: 20000,  warning: 20000 },
+      { key: 'cambio_aceite',        label: 'Cambio de Aceite',               icon: '🛢', interval: 5000,  warning: 5000 },
+      { key: 'afinamiento_gasolina', label: 'Afinamiento de Gasolina',        icon: '🔧', interval: 10000, warning: 10000 },
+      { key: 'revision_frenos',      label: 'Revisión de Frenos',             icon: '🛑', interval: 10000, warning: 10000 },
+      { key: 'revision_fluidos',     label: 'Revisión de Fluidos',            icon: '💧', interval: 10000, warning: 10000 },
+      { key: 'cambio_bujias',        label: 'Cambio de Bujías',               icon: '🔥', interval: 5000, warning: 5000 }
+    ];
+
+    // CONFIGURACIÓN MANTENIMIENTOS POR FECHA
+    const DATE_MAINTENANCE_CONFIG = [
+      { key: 'certificacion_gas',    label: 'Certificación Anual de Gas',  icon: '📋', warningDays: 30 },
+      { key: 'revision_quinquenal',  label: 'Revisión Quinquenal de Tanque', icon: '🗓️', warningDays: 60 }
+    ];
+
+    let userMaintenanceData = {};
+    let userDateMaintenanceData = {};
+
+    // Base de Datos Ampliada de Códigos de Falla OBD-II
+    const dtcDatabase = {
+      "P0100": {
+        title: "P0100 - Falla en el Circuito del Sensor MAF (Flujo de Aire)",
+        description: "La ECU detecta una falla en la señal o circuito eléctrico del sensor de flujo de masa de aire.",
+        causes: ["Sensor MAF sucio, contaminado o averiado.", "Conector suelto o cableado roto.", "Fuga de aire en la admisión."],
+        consequences: ["Luz Check Engine encendida.", "Inestabilidad en mínimo y joneo.", "Alto consumo de combustible."]
+      },
+      "P0171": {
+        title: "P0171 - Mezcla Demasiado Pobre (Banco 1)",
+        description: "Exceso de aire o falta de combustible.",
+        causes: ["Entrada de aire no medida.", "Inyectores obstruidos.", "Filtro de gas o regulador sucio."],
+        consequences: ["Joneo, detonaciones y recalentamiento de válvulas."]
+      },
+      "P0300": {
+        title: "P0300 - Fallo de Encendido Múltiple",
+        description: "Detonaciones a destiempo o saltos de chispa erráticos en varios cilindros simultáneamente.",
+        causes: ["Bujías o bobinas defectuosas.", "Inyectores de gas fallando.", "Pérdida de compresión."],
+        consequences: ["Motor tembloroso y falta de fuerza."]
+      },
+      "P0600": {
+        title: "P0600 - Falla de Comunicación CAN Bus",
+        description: "Pérdida de enlace entre la ECU y otros módulos como el de gas.",
+        causes: ["Batería baja.", "Cableado o conectores dañados.", "Falsos contactos en la instalación de gas."],
+        consequences: ["Falla de conmutación entre gasolina y gas."]
+      }
+    };
+
+    function searchErrorCode() {
+      const inputEl = document.getElementById('dtcInput');
+      const container = document.getElementById('dtcResultContainer');
+      if (!inputEl || !container) return;
+
+      const code = inputEl.value.trim().toUpperCase();
+      if (!code) {
+        alert("Por favor ingresa un código de error (Ejemplo: P0600).");
+        return;
+      }
+
+      const dtc = dtcDatabase[code];
+
+      if (dtc) {
+        container.innerHTML = `
+          <div class="dtc-result-card">
+            <div class="dtc-code-title">📌 ${dtc.title}</div>
+            <div class="dtc-block">
+              <strong>📖 Significado / Descripción:</strong>
+              <p>${dtc.description}</p>
+            </div>
+            <div class="dtc-block">
+              <strong>⚙️ Causas Más Frecuentes:</strong>
+              <ul>${dtc.causes.map(c => `<li>${c}</li>`).join('')}</ul>
+            </div>
+            <div class="dtc-block">
+              <strong>⚠️ Consecuencias:</strong>
+              <ul>${dtc.consequences.map(c => `<li>${c}</li>`).join('')}</ul>
+            </div>
+          </div>
+        `;
+      } else {
+        container.innerHTML = `
+          <div class="dtc-result-card" style="border-left: 4px solid #ef4444;">
+            <div class="dtc-code-title" style="color: #f87171;">⚠️ Código "${code}" no registrado en guía rápida</div>
+            <p style="color: #cbd5e1;">Nuestros técnicos pueden diagnosticarlo con el escáner del taller.</p>
+          </div>
+        `;
+      }
+      container.style.display = 'block';
+    }
+
+    // ==========================================
+    // ⏱️️ LÓGICA DEL MONITOR DE SERVICIO EN VIVO
+    // ==========================================
+    function startServiceMonitor(userData) {
+      if (serviceTimerInterval) clearInterval(serviceTimerInterval);
+
+      const monitorBox = document.getElementById('serviceMonitorBox');
+      const statusPill = document.getElementById('serviceStatusPill');
+      const nameDisplay = document.getElementById('serviceNameDisplay');
+      const timeDisplay = document.getElementById('serviceTimeDisplay');
+      const progressBar = document.getElementById('serviceProgressBar');
+      const remainingText = document.getElementById('serviceRemainingText');
+      const startTimeDisplay = document.getElementById('serviceStartTimeDisplay');
+
+      if (!monitorBox || !statusPill) return;
+
+      // Extraer campos de servicio
+      const serviceName = userData.servicio_nombre || 'Mantenimiento General';
+      const durationMin = parseFloat(userData.servicio_duracion_min) || 0;
+      const startTimeRaw = userData.servicio_inicio_timestamp;
+      const statusState = (userData.servicio_estado || 'no_iniciado').toLowerCase();
+
+      // Si no hay servicio activo o la duración es 0
+      if (!startTimeRaw || durationMin <= 0 || statusState === 'no_iniciado') {
+        monitorBox.className = 'service-monitor-box';
+        statusPill.className = 'status-badge-pill idle';
+        statusPill.textContent = '⚪ Sin Servicio Activo';
+        nameDisplay.textContent = 'No hay trabajos programados';
+        timeDisplay.textContent = '0 min / 0 min';
+        progressBar.className = 'progress-bar-fill';
+        progressBar.style.width = '0%';
+        remainingText.textContent = 'Tu vehículo está listo o a la espera de ser ingresado a taller.';
+        startTimeDisplay.textContent = 'Inicio: --:--';
+        return;
+      }
+
+      const startTime = new Date(startTimeRaw).getTime();
+      const durationMs = durationMin * 60 * 1000;
+
+      function updateMonitor() {
+        const now = new Date().getTime();
+        const elapsedMs = Math.max(0, now - startTime);
+        const elapsedMin = Math.floor(elapsedMs / 60000);
+        const remainingMs = Math.max(0, (startTime + durationMs) - now);
+        const remainingMin = Math.ceil(remainingMs / 60000);
+
+        // Calcular porcentaje
+        let percentage = Math.min(100, Math.max(0, (elapsedMs / durationMs) * 100));
+
+        if (statusState === 'completado') {
+          percentage = 100;
+        }
+
+        // Determinar fase y color según las 3 reglas de color
+        // Rojo: 0 - 33%, Amarillo: 34 - 75%, Verde: 76 - 100% o Completado
+        let phaseClass = 'phase-red';
+        let statusLabel = '🔴 Servicio Recién Iniciado';
+
+        if (statusState === 'completado' || percentage >= 76) {
+          phaseClass = 'phase-green';
+          statusLabel = (statusState === 'completado' || percentage >= 100) ? '🟢 Servicio Finalizado / Listo' : '🟢 Fase Final del Servicio';
+        } else if (percentage >= 34) {
+          phaseClass = 'phase-yellow';
+          statusLabel = '🟡 Servicio a Mitad de Proceso';
+        }
+
+        // Actualizar Clases
+        monitorBox.className = `service-monitor-box ${phaseClass}`;
+        statusPill.className = `status-badge-pill ${phaseClass}`;
+        statusPill.textContent = statusLabel;
+        progressBar.className = `progress-bar-fill ${phaseClass}`;
+        progressBar.style.width = `${percentage.toFixed(1)}%`;
+
+        // Textos
+        nameDisplay.textContent = serviceName;
+        timeDisplay.textContent = `${elapsedMin} min / ${durationMin} min`;
+
+        const formattedStart = new Date(startTimeRaw).toLocaleTimeString('es-PE', { hour: '2-digit', minute: '2-digit' });
+        startTimeDisplay.textContent = `Inicio: ${formattedStart}`;
+
+        if (statusState === 'completado' || percentage >= 100) {
+          remainingText.innerHTML = `<strong>¡Trabajo concluido!</strong> Tu vehículo está listo para entrega.`;
+        } else {
+          remainingText.innerHTML = `⏳ Tiempo estimado restante: <strong>${remainingMin} minuto(s)</strong> (${percentage.toFixed(0)}% completado)`;
+        }
+      }
+
+      updateMonitor();
+      serviceTimerInterval = setInterval(updateMonitor, 10000); // Actualiza cada 10 seg
+    }
+
+    // REDIRECCIÓN A WHATSAPP AL SOLICITAR/RENOVAR MEMBRESÍA VIP
+    function handleSubscription() {
+      const activeUser = JSON.parse(localStorage.getItem('sngas_active_session'));
+      
+      const userName = activeUser ? (activeUser.nombre || activeUser.email) : 'Cliente';
+      const userPlate = (activeUser && activeUser.placa) ? activeUser.placa : 'No registrada';
+
+      const message = `Hola SN'GAS ONLINE 🎃, mi nombre es *${userName}* (Placa: *${userPlate}*). Deseo solicitar / renovar mi *Membresía VIP Nocturna* de Halloween para acceder a auxilio mecánico y promociones.`;
+      
+      const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+      
+      window.open(whatsappUrl, '_blank');
+    }
+
+    // CATÁLOGO DE PRODUCTOS
+    const products = [
+      { id: 1, name: 'Bujías Especiales para Gas', category: ['Gasolina', 'GNV', 'GLP'], priceText: '', description: 'Bujías de iridio/platino diseñadas para alta temperatura de combustión.', image: 'imagen%20de%20productos%20nd.jfif' },
+      { id: 3, name: 'Reductor / Regulador GNV 5ta Gen', category: ['GNV'], priceText: '', description: 'Reductor de alta presión con regulador térmico incorporado.', image: 'imagen%20de%20productos%20nd.jfif' },
+      { id: 5, name: 'Reductor / Regulador GLP 5ta Gen', category: ['GLP'], priceText: '', description: 'Regulador de presión de gas GLP para sistemas secuenciales.', image: 'imagen%20de%20productos%20nd.jfif' }
+    ];
+
+    // CATÁLOGO COMPLETO DE SERVICIOS
+    const services = [
+      { 
+        id: 101, 
+        name: 'Mantenimiento Preventivo GLP / GNV', 
+        category: [], 
+        priceText: '', 
+        description: 'Limpieza de inyectores de gas, cambio de filtros de fase líquida/gaseosa, revisión de fugas y calibración computarizada.',
+        image: 'imagen%20de%20productos%20nd.jfif' 
+      },
+      { 
+        id: 102, 
+        name: 'Escaneo y Diagnóstico OBD-II', 
+        category: [], 
+        priceText: '', 
+        description: 'Diagnóstico de luces de falla (Check Engine), análisis de sensores en vivo, borrado de códigos y reporte técnico.',
+        image: 'imagen%20de%20productos%20nd.jfif' 
+      },
+      { 
+        id: 103, 
+        name: 'Conversión a GNV / GLP (5ta Generación)', 
+        category: [], 
+        priceText: '', 
+        description: 'Instalación completa de kit de conversión a gas de 5ta generación con tanque certificado y garantía de taller.',
+        image: 'imagen%20de%20productos%20nd.jfif' 
+      },
+      { 
+        id: 104, 
+        name: 'Afinamiento Electrónico a Gasolina', 
+        category: [], 
+        priceText: '', 
+        description: 'Limpieza de cuerpo de aceleración, inyectores por ultrasonido, cambio de filtro de aire/gasolina y ajuste de ralentí.',
+        image: 'imagen%20de%20productos%20nd.jfif' 
+      }
+    ];
+
+    function showSection(sectionName) {
+      const sections = ['homeSection', 'shopSection', 'servicesSection', 'accountSection'];
+      const navs = ['nav-home', 'nav-shop', 'nav-services', 'nav-account'];
+
+      sections.forEach(s => document.getElementById(s)?.classList.remove('active'));
+      navs.forEach(n => document.getElementById(n)?.classList.remove('active'));
+
+      if (sectionName === 'home') {
+        document.getElementById('homeSection').classList.add('active');
+        document.getElementById('nav-home').classList.add('active');
+      } else if (sectionName === 'shop') {
+        document.getElementById('shopSection').classList.add('active');
+        document.getElementById('nav-shop').classList.add('active');
+      } else if (sectionName === 'services') {
+        document.getElementById('servicesSection').classList.add('active');
+        document.getElementById('nav-services').classList.add('active');
+      } else if (sectionName === 'account') {
+        document.getElementById('accountSection').classList.add('active');
+        document.getElementById('nav-account').classList.add('active');
+        checkUserSession();
+      }
+    }
+
+    function createCardHTML(item) {
+      const priceDisplay = item.priceText ? `S/ ${item.priceText}` : '';
+      const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent('Hola SN\'GAS ONLINE, me interesa consultar por el servicio/producto: ' + item.name)}`;
+
+      const badgesHTML = (item.category && item.category.length > 0) ? item.category.map(cat => {
+        const catClass = cat.toLowerCase();
+        return `<span class="product-badge badge-${catClass}">${cat}</span>`;
+      }).join(' ') : '';
+
+      return `
+        <div class="product-card">
+          <div>
+            <img src="${item.image}" class="product-image" alt="${item.name}">
+            <div class="badges-container">${badgesHTML}</div>
+            <div class="product-title">${item.name}</div>
+            ${item.description ? `<div class="product-desc">${item.description}</div>` : ''}
+          </div>
+          <div>
+            ${priceDisplay ? `<div class="product-price">${priceDisplay}</div>` : ''}
+            ${item.priceText ? `<a href="${whatsappUrl}" target="_blank" class="btn-whatsapp">Consultar por WhatsApp</a>` : ''}
+          </div>
+        </div>
+      `;
+    }
+
+    function renderProducts(items) {
+      const grid = document.getElementById('productsGrid');
+      if (grid) grid.innerHTML = items.map(createCardHTML).join('');
+    }
+
+    function renderServices(items) {
+      const grid = document.getElementById('servicesGrid');
+      if (grid) grid.innerHTML = items.map(createCardHTML).join('');
+    }
+
+    function toggleAuthForms(mode) {
+      document.getElementById('registerForm').style.display = mode === 'login' ? 'none' : 'block';
+      document.getElementById('loginForm').style.display = mode === 'login' ? 'block' : 'none';
+    }
+
+    async function handleRegister(e) {
+      e.preventDefault();
+      if (!supabaseClient) return alert("Supabase no está conectado");
+      const email = document.getElementById('regEmail').value.trim().toLowerCase();
+      const password = document.getElementById('regPassword').value.trim();
+      const name = document.getElementById('regName').value.trim();
+      const phone = document.getElementById('regPhone').value.trim();
+
+      const { data, error } = await supabaseClient
+        .from('usuarios')
+        .insert([{ nombre: name, email, telefono: phone, password }])
+        .select();
+
+      if (error) return alert('Error: ' + error.message);
+      localStorage.setItem('sngas_active_session', JSON.stringify(data[0]));
+      checkUserSession();
+    }
+
+    async function handleLogin(e) {
+      e.preventDefault();
+      if (!supabaseClient) return alert("Supabase no está conectado");
+      const email = document.getElementById('loginEmail').value.trim().toLowerCase();
+      const pass = document.getElementById('loginPassword').value.trim();
+
+      const { data, error } = await supabaseClient
+        .from('usuarios')
+        .select('*')
+        .eq('email', email)
+        .eq('password', pass)
+        .maybeSingle();
+
+      if (data) {
+        localStorage.setItem('sngas_active_session', JSON.stringify(data));
+        checkUserSession();
+      } else {
+        alert('Datos incorrectos.');
+      }
+    }
+
+    function handleLogout() {
+      if (serviceTimerInterval) clearInterval(serviceTimerInterval);
+      localStorage.removeItem('sngas_active_session');
+      checkUserSession();
+    }
+
+    // REGISTRO ÚNICO DE PLACA
+    async function handleSavePlate() {
+      const activeUser = JSON.parse(localStorage.getItem('sngas_active_session'));
+      const inputEl = document.getElementById('userPlateInput');
+      if (!inputEl || !activeUser || !supabaseClient) return;
+
+      const placaVal = inputEl.value.trim().toUpperCase();
+
+      if (placaVal.length < 6) {
+        return alert("Por favor ingresa una placa válida de 6 caracteres (Ejemplo: ABC123).");
+      }
+
+      const confirmacion = confirm(`¿Confirmas que la placa de tu vehículo es ${placaVal}?\n\nPor motivos de seguridad, una vez guardada no podrás modificarla ni borrarla desde la app.`);
+      
+      if (!confirmacion) return;
+
+      const { data, error } = await supabaseClient
+        .from('usuarios')
+        .update({ placa: placaVal })
+        .eq('id', activeUser.id)
+        .select();
+
+      if (error) {
+        alert("Ocurrió un error al guardar la placa: " + error.message);
+      } else {
+        alert("¡Placa registrada con éxito!");
+        if (data && data[0]) {
+          localStorage.setItem('sngas_active_session', JSON.stringify(data[0]));
+        }
+        checkUserSession();
+      }
+    }
+
+    function formatCertDate(rawDate) {
+      if (!rawDate) return null;
+      const d = new Date(rawDate + (rawDate.length === 10 ? 'T00:00:00' : ''));
+      if (isNaN(d.getTime())) return rawDate;
+      return d.toLocaleDateString('es-PE', { day: '2-digit', month: '2-digit', year: 'numeric' });
+    }
+
+    // CÁLCULO Y RENDERIZADO DE MANTENIMIENTOS
+    function calcularMantenimientos() {
+      const kmInput = document.getElementById('kmActualInput');
+      const grid = document.getElementById('maintenanceGrid');
+      if (!kmInput || !grid) return;
+
+      const kmActual = parseInt(kmInput.value, 10);
+      if (isNaN(kmActual) || kmActual < 0) return alert('Ingresa un kilometraje válido.');
+
+      grid.innerHTML = KM_MAINTENANCE_CONFIG.map(item => {
+        const kmUltimo = userMaintenanceData[item.key];
+
+        if (kmUltimo === null || kmUltimo === undefined || kmUltimo === '') {
+          return `
+            <div class="maint-card status-gray">
+              <div class="maint-card-header"><span class="maint-icon">${item.icon}</span><span class="maint-title">${item.label}</span></div>
+              <span class="maint-status-badge">Sin datos</span>
+              <p class="maint-detail">No hay registros del último servicio.</p>
+            </div>`;
+        }
+
+        const kmRecorridos = kmActual - Number(kmUltimo);
+        const kmRestante = item.interval - kmRecorridos;
+
+        let statusClass = 'status-green', statusLabel = 'Al día', detail = `Faltan ${kmRestante.toLocaleString()} km.`;
+
+        if (kmRestante <= 0) {
+          statusClass = 'status-red';
+          statusLabel = 'Vencido';
+          detail = `Vencido hace ${Math.abs(kmRestante).toLocaleString()} km.`;
+        } else if (kmRestante <= item.warning) {
+          statusClass = 'status-yellow';
+          statusLabel = 'Próximo';
+          detail = `Faltan solo ${kmRestante.toLocaleString()} km.`;
+        }
+
+        return `
+          <div class="maint-card ${statusClass}">
+            <div class="maint-card-header"><span class="maint-icon">${item.icon}</span><span class="maint-title">${item.label}</span></div>
+            <span class="maint-status-badge">${statusLabel}</span>
+            <p class="maint-detail">${detail}</p>
+          </div>`;
+      }).join('');
+
+      saveKmActual(kmActual);
+    }
+
+    async function saveKmActual(kmActual) {
+      const activeUser = JSON.parse(localStorage.getItem('sngas_active_session'));
+      if (!supabaseClient || !activeUser) return;
+      await supabaseClient.from('usuarios').update({ km_actual: kmActual }).eq('id', activeUser.id);
+    }
+
+    function renderDateMaintenanceCards() {
+      const grid = document.getElementById('dateMaintenanceGrid');
+      if (!grid) return;
+
+      grid.innerHTML = DATE_MAINTENANCE_CONFIG.map(item => {
+        const rawDate = userDateMaintenanceData[item.key];
+
+        if (!rawDate) {
+          return `
+            <div class="maint-card status-gray">
+              <div class="maint-card-header"><span class="maint-icon">${item.icon}</span><span class="maint-title">${item.label}</span></div>
+              <span class="maint-status-badge">Sin datos</span>
+              <p class="maint-detail">Fecha no asignada aún.</p>
+            </div>`;
+        }
+
+        const formatted = formatCertDate(rawDate);
+        const today = new Date();
+        today.setHours(0,0,0,0);
+        const targetDate = new Date(rawDate + (rawDate.length === 10 ? 'T00:00:00' : ''));
+        const daysLeft = Math.ceil((targetDate - today) / (1000 * 60 * 60 * 24));
+
+        let statusClass = 'status-green', statusLabel = 'Al día', detail = `Vence el ${formatted} (${daysLeft} días restantes).`;
+
+        if (daysLeft < 0) {
+          statusClass = 'status-red';
+          statusLabel = 'Vencido';
+          detail = `Venció el ${formatted} (hace ${Math.abs(daysLeft)} días).`;
+        } else if (daysLeft <= item.warningDays) {
+          statusClass = 'status-yellow';
+          statusLabel = 'Por vencer';
+          detail = `Vence pronto (${formatted}). Quedan ${daysLeft} días.`;
+        }
+
+        return `
+          <div class="maint-card ${statusClass}">
+            <div class="maint-card-header"><span class="maint-icon">${item.icon}</span><span class="maint-title">${item.label}</span></div>
+            <span class="maint-status-badge">${statusLabel}</span>
+            <p class="maint-detail">${detail}</p>
+          </div>`;
+      }).join('');
+    }
+
+    // CONSULTA Y ACTUALIZACIÓN DESDE SUPABASE EN TIEMPO REAL
+    async function checkUserSession() {
+      const activeUser = JSON.parse(localStorage.getItem('sngas_active_session'));
+      const authBox = document.getElementById('authBox');
+      const userDashboard = document.getElementById('userDashboard');
+
+      if (activeUser) {
+        if (authBox) authBox.style.display = 'none';
+        if (userDashboard) userDashboard.style.display = 'block';
+
+        document.getElementById('userNameDisplay').textContent = activeUser.nombre || activeUser.email;
+
+        if (supabaseClient && activeUser.id) {
+          const { data, error } = await supabaseClient
+            .from('usuarios')
+            .select('*')
+            .eq('id', activeUser.id)
+            .maybeSingle();
+
+          if (data) {
+            isUserVipActive = data.membresia_activa === true;
+
+            // LÓGICA DE MOSTRAR / REGISTRAR PLACA
+            const inputContainer = document.getElementById('plateInputContainer');
+            const displayContainer = document.getElementById('plateDisplayContainer');
+
+            if (data.placa && data.placa.trim() !== '') {
+              document.getElementById('userPlateDisplay').textContent = data.placa.toUpperCase();
+              if (inputContainer) inputContainer.style.display = 'none';
+              if (displayContainer) displayContainer.style.display = 'inline-flex';
+            } else {
+              if (inputContainer) inputContainer.style.display = 'flex';
+              if (displayContainer) displayContainer.style.display = 'none';
+            }
+
+            // INICIAR MONITOR DE TIEMPO DE SERVICIO DEBAJO DE LA PLACA
+            startServiceMonitor(data);
+
+            // Puntos / Monegas
+            document.getElementById('userMonegasDisplay').textContent = data.monegas || 0;
+            document.getElementById('userGiftDisplay').textContent = data.regalo || '¡Bienvenido!';
+
+            // Guardar datos de kilómetros de la DB
+            userMaintenanceData = {
+              mantenimiento_gas: data.km_ultimo_mantenimiento_gas,
+              afinamiento_gasolina: data.km_ultimo_afinamiento_gasolina,
+              cambio_aceite: data.km_ultimo_cambio_aceite,
+              revision_frenos: data.km_ultima_revision_frenos,
+              revision_fluidos: data.km_ultima_revision_fluidos,
+              cambio_bujias: data.km_ultimo_cambio_bujias
+            };
+
+            // Guardar fechas de trámites
+            userDateMaintenanceData = {
+              certificacion_gas: data.fecha_certificacion_gas || data.proxima_certificacion,
+              revision_quinquenal: data.fecha_revision_quinquenal
+            };
+
+            renderDateMaintenanceCards();
+
+            if (data.km_actual) {
+              document.getElementById('kmActualInput').value = data.km_actual;
+              calcularMantenimientos();
+            }
+          }
+        }
+      } else {
+        if (authBox) authBox.style.display = 'block';
+        if (userDashboard) userDashboard.style.display = 'none';
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderProducts(products);
+      renderServices(services);
+    });
+  </script>
+</body>
+</html>

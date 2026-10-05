@@ -243,8 +243,6 @@
     .badge-gasolina { background-color: #fef3c7; color: #b45309; }
     .badge-gnv { background-color: #dcfce7; color: #15803d; }
     .badge-glp { background-color: #e0f2fe; color: #0369a1; }
-    .badge-servicios { background-color: #f3e8ff; color: #6b21a8; }
-    .badge-exclusivo { background-color: #fce7f3; color: #be185d; }
 
     .product-title {
       font-size: 1.15rem;
@@ -295,11 +293,6 @@
       padding-bottom: 4rem;
       min-height: 80vh;
       color: #f3e8ff;
-    }
-
-    .halloween-title {
-      color: #f97316 !important;
-      text-shadow: 0 0 10px rgba(249, 115, 22, 0.5);
     }
 
     /* AUTH CONTAINER HALLOWEEN */
@@ -419,7 +412,7 @@
 
     /* PLACA TENEBROSA */
     .plate-top-box {
-      margin-bottom: 1.5rem;
+      margin-bottom: 1rem;
       background-color: #0f0a1c;
       border: 2px dashed #f97316;
       padding: 1.2rem;
@@ -513,6 +506,155 @@
       text-shadow: 0 0 5px rgba(249, 115, 22, 0.5);
     }
 
+    /* ⏱️ MONITOR DE SERVICIO EN TIEMPO REAL (DEBAJO DE LA PLACA) */
+    .service-monitor-box {
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, #170b28 0%, #0d0614 100%);
+      border: 2px solid #6b21a8;
+      border-radius: 12px;
+      padding: 1.2rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    /* Colores dinámicos para el contenedor del monitor */
+    .service-monitor-box.phase-red {
+      border-color: #ef4444;
+      box-shadow: 0 0 15px rgba(239, 68, 68, 0.3);
+    }
+    .service-monitor-box.phase-yellow {
+      border-color: #f59e0b;
+      box-shadow: 0 0 15px rgba(245, 158, 11, 0.3);
+    }
+    .service-monitor-box.phase-green {
+      border-color: #10b981;
+      box-shadow: 0 0 18px rgba(16, 185, 129, 0.4);
+    }
+
+    .monitor-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .monitor-title {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #f97316;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .status-badge-pill {
+      font-size: 0.78rem;
+      font-weight: 800;
+      padding: 4px 12px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .status-badge-pill.phase-red {
+      background-color: #ef4444;
+      color: #ffffff;
+      box-shadow: 0 0 8px rgba(239, 68, 68, 0.6);
+    }
+
+    .status-badge-pill.phase-yellow {
+      background-color: #f59e0b;
+      color: #000000;
+      box-shadow: 0 0 8px rgba(245, 158, 11, 0.6);
+    }
+
+    .status-badge-pill.phase-green {
+      background-color: #10b981;
+      color: #ffffff;
+      box-shadow: 0 0 10px rgba(16, 185, 129, 0.8);
+    }
+
+    .status-badge-pill.idle {
+      background-color: #475569;
+      color: #cbd5e1;
+    }
+
+    .service-info-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .service-name {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #ffffff;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    }
+
+    .service-timer {
+      font-size: 1.15rem;
+      font-weight: 800;
+      font-family: 'Courier New', Courier, monospace;
+      color: #f3e8ff;
+    }
+
+    .progress-bar-track {
+      width: 100%;
+      height: 16px;
+      background-color: #0f0a1c;
+      border: 1px solid #3b0764;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 10px;
+      position: relative;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.8);
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      width: 0%;
+      border-radius: 10px;
+      transition: width 0.5s ease, background-color 0.5s ease;
+    }
+
+    .progress-bar-fill.phase-red {
+      background: linear-gradient(90deg, #dc2626, #ef4444);
+      box-shadow: 0 0 10px #ef4444;
+    }
+
+    .progress-bar-fill.phase-yellow {
+      background: linear-gradient(90deg, #d97706, #f59e0b);
+      box-shadow: 0 0 10px #f59e0b;
+    }
+
+    .progress-bar-fill.phase-green {
+      background: linear-gradient(90deg, #059669, #10b981);
+      box-shadow: 0 0 12px #10b981;
+    }
+
+    .monitor-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+      color: #c084fc;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
     .btn-vip-whatsapp {
       display: inline-flex;
       align-items: center;
@@ -584,16 +726,6 @@
       font-size: 1.3rem;
       font-weight: 800;
       color: #6ee7b7;
-    }
-
-    .cert-box.cert-alert {
-      border-color: #ef4444;
-      color: #fca5a5;
-    }
-
-    .cert-card.cert-urgent {
-      background: linear-gradient(135deg, #450a0a 0%, #7f1d1d 100%);
-      border-left-color: #ef4444;
     }
 
     .vip-card {
@@ -838,35 +970,6 @@
       margin-bottom: 14px;
     }
 
-    /* BANNER PROMOCIONAL HALLOWEEN */
-    .promo-section {
-      background: linear-gradient(135deg, #451a03 0%, #78350f 100%);
-      color: white;
-      padding: 20px;
-      border-radius: 12px;
-      margin: 25px 0;
-      border-left: 5px solid #f97316;
-      border: 1px solid #f97316;
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      flex-wrap: wrap;
-      min-height: 160px;
-      box-shadow: 0 0 15px rgba(249, 115, 22, 0.2);
-    }
-
-    .promo-content h3 {
-      font-size: 1.25rem;
-      color: #fdba74;
-      margin-bottom: 6px;
-    }
-
-    .promo-content p {
-      font-size: 0.92rem;
-      color: #fef3c7;
-      line-height: 1.4;
-    }
-
     /* BÚSQUEDA OBD-II HALLOWEEN */
     .dtc-section {
       background: #0f0a1c;
@@ -972,6 +1075,10 @@
       .plate-input-wrapper {
         max-width: 100%;
       }
+      .service-info-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
     }
   </style>
 </head>
@@ -1028,7 +1135,7 @@
         </div>
         <div class="feature-card">
           <h3>Zona de Clientes</h3>
-          <p>Regístrate y accede a diagnósticos de códigos de error y promociones exclusivas.</p>
+          <p>Regístrate y accede a diagnósticos de códigos de error y seguimiento en tiempo real de tu servicio.</p>
         </div>
       </div>
     </div>
@@ -1121,6 +1228,30 @@
           <div id="plateDisplayContainer" class="plate-registered-badge" style="display: none;">
             <span class="plate-label">🚗 PLACA:</span>
             <span id="userPlateDisplay" class="plate-number">------</span>
+          </div>
+        </div>
+
+        <!-- ⏱️ MONITOR DE TIEMPO DE SERVICIO DEBAJO DE LA PLACA -->
+        <div id="serviceMonitorBox" class="service-monitor-box phase-red">
+          <div class="monitor-header">
+            <div class="monitor-title">
+              <span>🛠️ MONITOR DE SERVICIO EN TALLER</span>
+            </div>
+            <span id="serviceStatusPill" class="status-badge-pill idle">Sin Servicio Activo</span>
+          </div>
+
+          <div class="service-info-row">
+            <div id="serviceNameDisplay" class="service-name">Ningún servicio en proceso</div>
+            <div id="serviceTimeDisplay" class="service-timer">00 min / 00 min</div>
+          </div>
+
+          <div class="progress-bar-track">
+            <div id="serviceProgressBar" class="progress-bar-fill phase-red"></div>
+          </div>
+
+          <div class="monitor-footer">
+            <span id="serviceRemainingText">Esperando ingreso a taller...</span>
+            <span id="serviceStartTimeDisplay" style="font-size: 0.8rem; opacity: 0.8;">Inicio: --:--</span>
           </div>
         </div>
 
@@ -1223,9 +1354,6 @@
           </div>
         </div>
 
-        <!-- BANNER PROMOCIONAL -->
-        <div class="promo-section" id="promoBanner"></div>
-
         <!-- BÚSQUEDA CÓDIGOS OBD-II HALLOWEEN -->
         <div class="dtc-section">
           <div class="dtc-header">
@@ -1239,8 +1367,6 @@
           <div id="dtcResultContainer" style="display: none;"></div>
         </div>
 
-        <h3 class="exclusive-title" style="display: none;">🎁 Ofertas Exclusivas</h3>
-        <main class="products-grid" id="exclusiveGrid" style="display: none;"></main>
       </div>
 
     </div>
@@ -1251,12 +1377,14 @@
 
   <script>
     // ==========================================
-    // 1. CONFIGURACIÓN DE SUPABASE Y NÚMERO DE WHATSAPP
+    // 1. CONFIGURACIÓN DE SUPABASE Y WHATSAPP
     // ==========================================
     const SUPABASE_URL = 'https://pcpcbdraksmlobfrhrpk.supabase.co';
     const SUPABASE_KEY = 'sb_publishable_atbLcWJhwhFwPC5JCS8qmA_YIRmRUas';
 
     let supabaseClient = null;
+    let serviceTimerInterval = null;
+    let currentServiceData = null;
 
     function initSupabaseClient(retries = 15) {
       if (window.supabase && typeof window.supabase.createClient === 'function') {
@@ -1300,95 +1428,11 @@
         causes: ["Sensor MAF sucio, contaminado o averiado.", "Conector suelto o cableado roto.", "Fuga de aire en la admisión."],
         consequences: ["Luz Check Engine encendida.", "Inestabilidad en mínimo y joneo.", "Alto consumo de combustible."]
       },
-      "P0101": {
-        title: "P0101 - Rango / Desempeño del Sensor MAF",
-        description: "La lectura de entrada de aire no coincide con los valores esperados por la computadora del motor según las RPM.",
-        causes: ["Sensor MAF sucio.", "Filtro de aire tapado.", "Fugas de vacío importantes tras el MAF."],
-        consequences: ["Falta de potencia al acelerar.", "Humo negro por el escape.", "Marcha mínima inestable."]
-      },
-      "P0102": {
-        title: "P0102 - Entrada Baja del Sensor MAF",
-        description: "La señal devuelta por el sensor MAF hacia la ECU es inferior a 0.2 voltios.",
-        causes: ["Sensor defectuoso.", "Cable de señal cortado a masa.", "Filtro de aire obstruido."],
-        consequences: ["El motor se apaga en mínimo.", "Respuesta lenta del acelerador."]
-      },
-      "P0103": {
-        title: "P0103 - Entrada Alta del Sensor MAF",
-        description: "La señal entregada por el sensor MAF hacia la ECU es superior a 4.9 voltios continuos.",
-        causes: ["Cortocircuito a positivo en el arnés.", "Masa del sensor desconectada.", "Sensor MAF averiado."],
-        consequences: ["Consumo excesivo de gasolina o gas.", "Mezcla extremadamente rica."]
-      },
-      "P0105": {
-        title: "P0105 - Falla en Circuito Sensor MAP (Presión Absoluta del Múltiple)",
-        description: "Falla eléctrica general en la línea del sensor MAP.",
-        causes: ["Manguera de vacío del sensor MAP rota o zafada.", "Sensor MAP quemado.", "Cableado dañado."],
-        consequences: ["El motor se ahoga al acelerar.", "Humo negro y explosiones por el escape."]
-      },
-      "P0106": {
-        title: "P0106 - Rango / Desempeño del Sensor MAP",
-        description: "El voltaje entregado por el sensor MAP no guarda coherencia con la apertura de la mariposa.",
-        causes: ["Obstrucción en toma de vacío.", "Múltiple de admisión picado o rajado.", "Sensor MAP descalibrado."],
-        consequences: ["Perdida repentina de potencia.", "Marcha inestable en ralentí."]
-      },
-      "P0110": {
-        title: "P0110 - Circuito del Sensor IAT (Temperatura de Aire de Admisión)",
-        description: "Problema en el circuito del sensor que mide la temperatura del aire que entra al motor.",
-        causes: ["Sensor IAT averiado.", "Conector sulfatado.", "Cable de señal roto."],
-        consequences: ["Dificultad para encender en frío.", "Mezcla fuera de parámetro."]
-      },
-      "P0115": {
-        title: "P0115 - Falla en Circuito del Sensor ECT (Temperatura del Refrigerante)",
-        description: "La computadora no recibe una medición válida de la temperatura de motor.",
-        causes: ["Sensor de temperatura de refrigerante averiado.", "Termostato trabado en abierto.", "Conector del ECT flojo."],
-        consequences: ["Electroventilador encendido directo.", "Dificultad de arranque en frío.", "Elevado consumo."]
-      },
-      "P0120": {
-        title: "P0120 - Falla en Circuito del Sensor TPS (Posición del Acelerador)",
-        description: "Interrupción o distorsión en la señal emitida por la pista A del potenciómetro de la mariposa.",
-        causes: ["Sensor TPS desgastado.", "Cuerpo de aceleración sucio o descalibrado.", "Arnés con falso contacto."],
-        consequences: ["Aceleración a jalones.", "El motor no responde al pisar el pedal."]
-      },
-      "P0130": {
-        title: "P0130 - Falla Circuito Sensor de Oxígeno (Banco 1, Sensor 1)",
-        description: "Falla eléctrica primaria en el sensor de oxígeno ubicado antes del catalizador.",
-        causes: ["Sensor contaminado con aceite o refrigerante.", "Línea de señal rota.", "Calentador del sensor quemado."],
-        consequences: ["Luz Check Engine encendida.", "Consumo elevado de combustible."]
-      },
-      "P0133": {
-        title: "P0133 - Sensor de Oxígeno Respuesta Lenta (Banco 1, Sensor 1)",
-        description: "El sensor tarda demasiado tiempo en alternar sus mediciones entre mezcla rica y pobre.",
-        causes: ["Sensor de oxígeno agotado o con hollín.", "Fuga en el múltiple de escape.", "Inyectores goteando."],
-        consequences: ["Emisión excesiva de gases.", "Ligera pérdida de rendimiento."]
-      },
-      "P0135": {
-        title: "P0135 - Falla en el Calentador del Sensor de Oxígeno (Banco 1, Sensor 1)",
-        description: "La resistencia interna del sensor de oxígeno encargada de calentarlo rápidamente no funciona.",
-        causes: ["Resistencia del sensor abierta.", "Fusible del sensor fundido.", "Relé defectuoso."],
-        consequences: ["Demora prolongada para entrar en bucle cerrado (Closed Loop).", "Exceso de consumo en los primeros minutos."]
-      },
-      "P0136": {
-        title: "P0136 - Falla en Sensor de Oxígeno (Banco 1, Sensor 2)",
-        description: "Lecturas anormales en el sensor posterior al catalizador.",
-        causes: ["Sensor desgastado.", "Cableado quemado por el escape.", "Mezcla descompensada en GLP/GNV."],
-        consequences: ["Aumento en consumo.", "Luz Check Engine encendida."]
-      },
-      "P0141": {
-        title: "P0141 - Falla en Calentador del Sensor de Oxígeno (Banco 1, Sensor 2)",
-        description: "Falla en la resistencia de calentamiento del sensor de oxígeno secundario.",
-        causes: ["Sensor trasero dañado.", "Arnés roto bajo la carrocería.", "Fusible maestro de sensores quemado."],
-        consequences: ["Luz Check Engine fija.", "Fallo en pruebas de emisiones."]
-      },
       "P0171": {
         title: "P0171 - Mezcla Demasiado Pobre (Banco 1)",
         description: "Exceso de aire o falta de combustible.",
         causes: ["Entrada de aire no medida.", "Inyectores obstruidos.", "Filtro de gas o regulador sucio."],
         consequences: ["Joneo, detonaciones y recalentamiento de válvulas."]
-      },
-      "P0172": {
-        title: "P0172 - Mezcla Demasiado Rica (Banco 1)",
-        description: "Exceso de combustible o falta de aire ingresando a la cámara de combustión.",
-        causes: ["Presión excesiva en el reductor de gas/gasolina.", "Inyector abierto o goteando.", "Filtro de aire obstruido."],
-        consequences: ["Humo negro.", "Olor fuerte a combustible/gas.", "Bujías ahumadas."]
       },
       "P0300": {
         title: "P0300 - Fallo de Encendido Múltiple",
@@ -1396,119 +1440,11 @@
         causes: ["Bujías o bobinas defectuosas.", "Inyectores de gas fallando.", "Pérdida de compresión."],
         consequences: ["Motor tembloroso y falta de fuerza."]
       },
-      "P0301": {
-        title: "P0301 - Fallo de Encendido en Cilindro 1",
-        description: "La ECU detecta falta de combustión o pérdida de potencia en el Cilindro 1.",
-        causes: ["Bujía del cilindro 1 desgastada.", "Bobina o cable dañado.", "Inyector de gas/gasolina obstruido."],
-        consequences: ["Temblor constante del motor en mínimo.", "Pérdida notoria de aceleración."]
-      },
-      "P0302": {
-        title: "P0302 - Fallo de Encendido en Cilindro 2",
-        description: "Falla en el proceso de combustión específico del Cilindro 2.",
-        causes: ["Bujía carbonizada.", "Bobina individual cruzada.", "Empaque de culata picado en cil. 2."],
-        consequences: ["Motor inestable.", "Olor a combustible no quemado."]
-      },
-      "P0303": {
-        title: "P0303 - Fallo de Encendido en Cilindro 3",
-        description: "Pérdida de chispa o combustible en el Cilindro 3.",
-        causes: ["Bobina de encendido defectuosa.", "Fuga de compresión por válvulas.", "Inyector suelto."],
-        consequences: ["Vibraciones marcadas en el habitáculo.", "Luz Check parpadeante."]
-      },
-      "P0304": {
-        title: "P0304 - Fallo de Encendido en Cilindro 4",
-        description: "Falta de chispa o pulso de inyección en el Cilindro 4.",
-        causes: ["Bujía defectuosa.", "Rampas de inyectores de gas fallando.", "Cableado suelto."],
-        consequences: ["Pérdida de fuerza en pendientes.", "Consumo elevado."]
-      },
-      "P0335": {
-        title: "P0335 - Falla en Circuito del Sensor CKP (Posición del Cigüeñal)",
-        description: "La ECU pierde la señal del sensor principal que determina las RPM y la posición del cigüeñal.",
-        causes: ["Sensor CKP quemado.", "Cables rozando contra correas.", "Rueda fónica rota o sucia."],
-        consequences: ["El motor se apaga de golpe.", "El carro no vuelve a encender o da marcha en vano."]
-      },
-      "P0340": {
-        title: "P0340 - Falla en Circuito Sensor CMP (Posición del Árbol de Levas)",
-        description: "Pérdida de sincronía entre el árbol de levas y la computadora.",
-        causes: ["Sensor CMP dañado.", "Falso contacto.", "Cadena o faja de distribución fuera de punto."],
-        consequences: ["Dificultad para encender.", "Consumo alto.", "Pérdida de potencia."]
-      },
-      "P0401": {
-        title: "P0401 - Flujo Insuficiente en Sistema EGR",
-        description: "No está ingresando la cantidad esperada de gases de escape a la admisión para enfriar la combustión.",
-        causes: ["Válvula EGR obstruida por carbón.", "Conductos de admisión taponados.", "Manguera de vacío suelta."],
-        consequences: ["Cascabeleo/detonación en aceleración.", "Aumento de emisiones de NOx."]
-      },
-      "P0420": {
-        title: "P0420 - Eficiencia del Sistema Catalítico por Debajo del Umbral (Banco 1)",
-        description: "El convertidor catalítico no está purificando los gases de escape de manera adecuada.",
-        causes: ["Catalizador desgastado o destruido.", "Sensor de oxígeno posterior averiado.", "Fuga de escape."],
-        consequences: ["Luz Check Engine encendida.", "Restricción de escape si se desmorona por dentro."]
-      },
-      "P0441": {
-        title: "P0441 - Flujo Incorrecto en la Válvula de Purga EVAP",
-        description: "El sistema de control de vapores de gasolina purged no genera la evacuación adecuada.",
-        causes: ["Válvula solenoide de purga trabada.", "Manguera de vacío rota o desconectada."],
-        consequences: ["Olor a gasolina.", "Arrastre/inestabilidad tras tanquear gasolina."]
-      },
-      "P0442": {
-        title: "P0442 - Fuga Pequeña en Sistema EVAP",
-        description: "Se detecta una microfuga de vapores de combustible en el tanque o tuberías.",
-        causes: ["Tapa del tanque de gasolina floja o con empaque roto.", "Manguera EVAP agrietada."],
-        consequences: ["Luz Check Engine encendida."]
-      },
-      "P0500": {
-        title: "P0500 - Falla en Sensor de Velocidad del Vehículo (VSS)",
-        description: "La ECU no recibe la señal sobre la velocidad de marcha de las ruedas.",
-        causes: ["Sensor VSS roto.", "Engranaje del piñón en la caja desgastado.", "Cableado intermitente."],
-        consequences: ["Velocímetro del tablero no marca.", "Cambios bruscos en cajas automáticas."]
-      },
-      "P0505": {
-        title: "P0505 - Falla en Sistema de Control de Aire en Ralentí (Válvula IAC)",
-        description: "Imposibilidad de ajustar la marcha mínima o aceleración en neutro.",
-        causes: ["Válvula IAC / Paso a paso sucia de hollín.", "Fuga de aire en empaque de admisión."],
-        consequences: ["El motor se apaga en los semáforos.", "RPM muy altas o sube y baja constantemente."]
-      },
       "P0600": {
         title: "P0600 - Falla de Comunicación CAN Bus",
         description: "Pérdida de enlace entre la ECU y otros módulos como el de gas.",
         causes: ["Batería baja.", "Cableado o conectores dañados.", "Falsos contactos en la instalación de gas."],
         consequences: ["Falla de conmutación entre gasolina y gas."]
-      },
-      "P0606": {
-        title: "P0606 - Falla en Procesador de la Computadora (ECU)",
-        description: "Fallo interno de procesamiento en la computadora del motor.",
-        causes: ["Pico de voltaje por alternador dañado.", "Filtración de agua a la ECU.", "ECU averiada."],
-        consequences: ["Vehículo no arranca o entra en modo de protección total."]
-      },
-      "P0700": {
-        title: "P0700 - Falla General en Módulo de Control de Transmisión (TCM)",
-        description: "La ECU de motor informa que la computadora de la caja automática detectó un fallo.",
-        causes: ["Problema interno en caja de cambios.", "Sensor de velocidad de turbina defectuoso."],
-        consequences: ["Caja bloqueada en 3ra marcha (Limp Mode).", "Golpes bruscos al pasar cambios."]
-      },
-      "C0110": {
-        title: "C0110 - Circuito del Motor de la Bomba del ABS",
-        description: "Falla en el motor de la bomba hidráulica de los frenos ABS.",
-        causes: ["Bomba con corto interno.", "Fusible o relé fundido."],
-        consequences: ["Desactivación del sistema ABS."]
-      },
-      "C0035": {
-        title: "C0035 - Falla en Sensor de Velocidad Rueda Delantera Izquierda",
-        description: "La computadora del ABS no recibe la pulsación de la rueda delantera izquierda.",
-        causes: ["Sensor de rueda roto o sucio con grasa/polvo.", "Bocina o rodaje roto.", "Cable cortado."],
-        consequences: ["Luz de ABS y TC encendidas.", "Freno antiderrape inactivo."]
-      },
-      "B0001": {
-        title: "B0001 - Circuito Control Airbag Conductor (Cinta de Timón)",
-        description: "Interrupción en la señal de detonación de la bolsa de aire del volante.",
-        causes: ["Cinta o espiral del timón (Clockspring) rota.", "Conector bajo la columna desconectado."],
-        consequences: ["Testigo de Airbag fijo en el tablero.", "Inacción de bolsa de aire en colisión."]
-      },
-      "U0100": {
-        title: "U0100 - Pérdida de Comunicación con el Módulo ECM / ECU",
-        description: "Los módulos secundarios (ABS, Tablero, Gas) perdieron enlace con la computadora central.",
-        causes: ["Falta de alimentación a la ECU principal.", "Fusible principal quemado.", "Línea CAN cortada."],
-        consequences: ["El tablero no marca parámetros.", "El carro no da arranque."]
       }
     };
 
@@ -1552,6 +1488,97 @@
         `;
       }
       container.style.display = 'block';
+    }
+
+    // ==========================================
+    // ⏱️️ LÓGICA DEL MONITOR DE SERVICIO EN VIVO
+    // ==========================================
+    function startServiceMonitor(userData) {
+      if (serviceTimerInterval) clearInterval(serviceTimerInterval);
+
+      const monitorBox = document.getElementById('serviceMonitorBox');
+      const statusPill = document.getElementById('serviceStatusPill');
+      const nameDisplay = document.getElementById('serviceNameDisplay');
+      const timeDisplay = document.getElementById('serviceTimeDisplay');
+      const progressBar = document.getElementById('serviceProgressBar');
+      const remainingText = document.getElementById('serviceRemainingText');
+      const startTimeDisplay = document.getElementById('serviceStartTimeDisplay');
+
+      if (!monitorBox || !statusPill) return;
+
+      // Extraer campos de servicio
+      const serviceName = userData.servicio_nombre || 'Mantenimiento General';
+      const durationMin = parseFloat(userData.servicio_duracion_min) || 0;
+      const startTimeRaw = userData.servicio_inicio_timestamp;
+      const statusState = (userData.servicio_estado || 'no_iniciado').toLowerCase();
+
+      // Si no hay servicio activo o la duración es 0
+      if (!startTimeRaw || durationMin <= 0 || statusState === 'no_iniciado') {
+        monitorBox.className = 'service-monitor-box';
+        statusPill.className = 'status-badge-pill idle';
+        statusPill.textContent = '⚪ Sin Servicio Activo';
+        nameDisplay.textContent = 'No hay trabajos programados';
+        timeDisplay.textContent = '0 min / 0 min';
+        progressBar.className = 'progress-bar-fill';
+        progressBar.style.width = '0%';
+        remainingText.textContent = 'Tu vehículo está listo o a la espera de ser ingresado a taller.';
+        startTimeDisplay.textContent = 'Inicio: --:--';
+        return;
+      }
+
+      const startTime = new Date(startTimeRaw).getTime();
+      const durationMs = durationMin * 60 * 1000;
+
+      function updateMonitor() {
+        const now = new Date().getTime();
+        const elapsedMs = Math.max(0, now - startTime);
+        const elapsedMin = Math.floor(elapsedMs / 60000);
+        const remainingMs = Math.max(0, (startTime + durationMs) - now);
+        const remainingMin = Math.ceil(remainingMs / 60000);
+
+        // Calcular porcentaje
+        let percentage = Math.min(100, Math.max(0, (elapsedMs / durationMs) * 100));
+
+        if (statusState === 'completado') {
+          percentage = 100;
+        }
+
+        // Determinar fase y color según las 3 reglas de color
+        // Rojo: 0 - 33%, Amarillo: 34 - 75%, Verde: 76 - 100% o Completado
+        let phaseClass = 'phase-red';
+        let statusLabel = '🔴 Servicio Recién Iniciado';
+
+        if (statusState === 'completado' || percentage >= 76) {
+          phaseClass = 'phase-green';
+          statusLabel = (statusState === 'completado' || percentage >= 100) ? '🟢 Servicio Finalizado / Listo' : '🟢 Fase Final del Servicio';
+        } else if (percentage >= 34) {
+          phaseClass = 'phase-yellow';
+          statusLabel = '🟡 Servicio a Mitad de Proceso';
+        }
+
+        // Actualizar Clases
+        monitorBox.className = `service-monitor-box ${phaseClass}`;
+        statusPill.className = `status-badge-pill ${phaseClass}`;
+        statusPill.textContent = statusLabel;
+        progressBar.className = `progress-bar-fill ${phaseClass}`;
+        progressBar.style.width = `${percentage.toFixed(1)}%`;
+
+        // Textos
+        nameDisplay.textContent = serviceName;
+        timeDisplay.textContent = `${elapsedMin} min / ${durationMin} min`;
+
+        const formattedStart = new Date(startTimeRaw).toLocaleTimeString('es-PE', { hour: '2-digit', minute: '2-digit' });
+        startTimeDisplay.textContent = `Inicio: ${formattedStart}`;
+
+        if (statusState === 'completado' || percentage >= 100) {
+          remainingText.innerHTML = `<strong>¡Trabajo concluido!</strong> Tu vehículo está listo para entrega.`;
+        } else {
+          remainingText.innerHTML = `⏳ Tiempo estimado restante: <strong>${remainingMin} minuto(s)</strong> (${percentage.toFixed(0)}% completado)`;
+        }
+      }
+
+      updateMonitor();
+      serviceTimerInterval = setInterval(updateMonitor, 10000); // Actualiza cada 10 seg
     }
 
     // REDIRECCIÓN A WHATSAPP AL SOLICITAR/RENOVAR MEMBRESÍA VIP
@@ -1607,30 +1634,6 @@
         category: [], 
         priceText: '', 
         description: 'Limpieza de cuerpo de aceleración, inyectores por ultrasonido, cambio de filtro de aire/gasolina y ajuste de ralentí.',
-        image: 'imagen%20de%20productos%20nd.jfif' 
-      },
-      { 
-        id: 105, 
-        name: 'Regulación y Calibración por Software', 
-        category: [], 
-        priceText: '', 
-        description: 'Ajuste fino de mapas de inyección de gas en ruta y ralentí para optimizar consumo y potencia.',
-        image: 'imagen%20de%20productos%20nd.jfif' 
-      },
-      { 
-        id: 106, 
-        name: 'Mantenimiento de Frenos y Suspensión', 
-        category: [], 
-        priceText: '', 
-        description: 'Inspección técnica, rectificado de discos/tambores, cambio de pastillas, zapatas y purga de líquido de frenos.',
-        image: 'imagen%20de%20productos%20nd.jfif' 
-      },
-      { 
-        id: 107, 
-        name: 'Certificación Anual / Inspección Quinquenal', 
-        category: [], 
-        priceText: '', 
-        description: 'Evaluación técnica del sistema de gas para renovación de certificado anual GNV/GLP y prueba hidrostática de cilindro.',
         image: 'imagen%20de%20productos%20nd.jfif' 
       }
     ];
@@ -1738,6 +1741,7 @@
     }
 
     function handleLogout() {
+      if (serviceTimerInterval) clearInterval(serviceTimerInterval);
       localStorage.removeItem('sngas_active_session');
       checkUserSession();
     }
@@ -1912,6 +1916,9 @@
               if (inputContainer) inputContainer.style.display = 'flex';
               if (displayContainer) displayContainer.style.display = 'none';
             }
+
+            // INICIAR MONITOR DE TIEMPO DE SERVICIO DEBAJO DE LA PLACA
+            startServiceMonitor(data);
 
             // Puntos / Monegas
             document.getElementById('userMonegasDisplay').textContent = data.monegas || 0;
